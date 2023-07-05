@@ -24,7 +24,7 @@ theme:
       toggle:
         icon: material/brightness-4
         name: Switch to light mode
-  logo: 'img/omicsTrain2.svg'
+  logo: 'images/logo.svg'
   icon:
     admonition:
       note: octicons/tag-16
