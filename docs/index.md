@@ -1,17 +1,14 @@
-# Welcome to MkDocs
+# Bioinformatics Workshops At Tufts University
 
-For full documentation visit [mkdocs.org](https://www.mkdocs.org).
+The bioinformatics workshop materials presented here are brought to you by the following groups at Tufts University:
 
-## Commands
+- [Research Technology - Tufts Technology Services](https://it.tufts.edu/researchtechnology.tufts.edu)
+- [Data Intensive Study Center (DISC)](https://disc.tufts.edu/)
+- [Clinical and Translational Science Institute (CTSI)](https://www.tuftsctsi.org/)
 
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs -h` - Print help message and exit.
+Check out our current material by clicking on one of the following topics:
 
-## Project layout
-
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
+- [Genomics](#)
+- [Transcriptomics](#)
+- [Proteomics](#)
+- [Epigenomics](#)
