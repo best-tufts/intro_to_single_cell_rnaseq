@@ -75,3 +75,13 @@ extra_javascript:
 nav:
     - About : 
         - Introduction: index.md
+    - Genomics:
+        - Genomics Tutorials: genomics/genomics.md
+    - Transcriptomics:
+        - Transcriptomics Tutorials: transcriptomics/transcriptomics.md
+    - Proteomics:
+        - Proteomics Tutorials: proteomics/proteomics.md
+    - Epigenomics:
+        - Epigenomics Tutorials: epigenomics/epigenomics.md
+    - Metagenomics:
+        - Metagenomics Tutorials: metagenomics/metagenomics.md
