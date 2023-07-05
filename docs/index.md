@@ -12,3 +12,4 @@ Check out our current material by clicking on one of the following topics:
 - [Transcriptomics](#)
 - [Proteomics](#)
 - [Epigenomics](#)
+- [Metagenomics](#)
