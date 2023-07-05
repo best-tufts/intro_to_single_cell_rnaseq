@@ -1,0 +1,11 @@
+:root > * {
+  --md-primary-fg-color:        #425778;
+}
+
+.md-header{
+    background-color: white;
+    color: #425778;
+}
+@font-face {
+    font-weight: bold;
+}
