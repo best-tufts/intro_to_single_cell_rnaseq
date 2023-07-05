@@ -8,8 +8,8 @@ The bioinformatics workshop materials presented here are brought to you by the f
 
 Check out our current material by clicking on one of the following topics:
 
-- [Genomics](#)
-- [Transcriptomics](#)
-- [Proteomics](#)
-- [Epigenomics](#)
-- [Metagenomics](#)
+- [Genomics](./genomics/genomics.md)
+- [Transcriptomics](./transcriptomics/transcriptomics.md)
+- [Proteomics](./proteomics/proteomics.md)
+- [Epigenomics](./epigenomics/epigenomics.md)
+- [Metagenomics](./metagenomics/metagenomics.md)
