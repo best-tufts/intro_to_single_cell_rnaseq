@@ -82,6 +82,7 @@ nav:
         - Merging Chimeras & Taxonomy: intro16S/06_merging-chimeras-taxonomy.md
         - Diversity Analysis: intro16S/07_diversity-analysis.md
         - Differential Abundance: intro16S/08_differential-abundance.md
-    - [Main Workshop Website](https://best-tufts.github.io/bioinformatics_workshops/):
+    - Main Workshop Website:
+        - Main Workshop Website: index.md
     
 
