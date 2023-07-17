@@ -1,15 +1,1 @@
-# Bioinformatics Workshops At Tufts University
-
-The bioinformatics workshop materials presented here are brought to you by the following groups at Tufts University:
-
-- [Research Technology - Tufts Technology Services](https://it.tufts.edu/researchtechnology.tufts.edu)
-- [Data Intensive Study Center (DISC)](https://disc.tufts.edu/)
-- [Clinical and Translational Science Institute (CTSI)](https://www.tuftsctsi.org/)
-
-Check out our current material by clicking on one of the following topics:
-
-- [Genomics](./genomics/genomics.md)
-- [Transcriptomics](./transcriptomics/transcriptomics.md)
-- [Proteomics](./proteomics/proteomics.md)
-- [Epigenomics](./epigenomics/epigenomics.md)
-- [Metagenomics](./metagenomics/metagenomics.md)
+[Workshop Website Main Page](https://best-tufts.github.io/bioinformatics_workshops/){ .md-button .md-button--primary }
