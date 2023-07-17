@@ -1,5 +1,5 @@
-site_name: Bioinformatics Education and Services at Tufts 
-repo_url: https://github.com/best-tufts/bioinformatics_workshops
+site_name: Introduction to 16S Data Analysis with DADA2
+repo_url: https://github.com/best-tufts/intro_to_16S
 edit_uri: blob/main/docs/
 
 theme:
