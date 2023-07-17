@@ -1,3 +1,0 @@
-# Genomics Tutorials
-
-*Under Development*
