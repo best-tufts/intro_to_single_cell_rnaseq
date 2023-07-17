@@ -1,3 +1,0 @@
-# Metagenomics Tutorials
-
-*Under Development*
