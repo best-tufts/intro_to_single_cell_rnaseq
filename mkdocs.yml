@@ -73,13 +73,15 @@ extra_javascript:
   - javascripts/tablesort.js
 
 nav:
-    - About : 
-        - Introduction: index.md
-    - Genomics:
-        - Genomics Tutorials: genomics/genomics.md
-    - Transcriptomics:
-        - Transcriptomics Tutorials: transcriptomics/transcriptomics.md
-    - Proteomics:
-        - Proteomics Tutorials: proteomics/proteomics.md
-    - Metagenomics:
-        - Metagenomics Tutorials: metagenomics/metagenomics.md
+    - Workshop Materials : 
+        - Introduction: intro16S/01_metabarcoding-intro.md
+        - Background: intro16S/02_background.md
+        - Setup: intro16S/03_setup.md
+        - Quality Control: intro16S/04_quality-control.md
+        - Error Models & Sequence Variants: intro16S/05_error-asv.md
+        - Merging Chimeras & Taxonomy: intro16S/06_merging-chimeras-taxonomy.md
+        - Diversity Analysis: intro16S/07_diversity-analysis.md
+        - Differential Abundance: intro16S/08_differential-abundance.md
+    - About BEST :
+        - Genomics Tutorials: index.md
+
