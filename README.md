@@ -1,14 +1,12 @@
-# Introduction to 16S Data Analysis with DADA2
+# Introduction to Single-Cell RNA-Seq
 
 ## Learning Objectives
 
-- Understand 16S Amplicon Sequencing Data Background
-- Apply appropriate quality control measures
-- Understand DADA2 error model and how sequence variants are inferred
-- Merging chimeric reads and assigning taxonomy
-- How to perform diversity analysis
-- How to perform differential abundance analysis
+- Single cell RNAseq experiment and clustering workflow
+- Multi-sample integration and Cell type identification
+-  Differential Expression between conditions with replicates
+-  Cell type proportion/composition 
+  
+## Workshop Website
 
-  ## Workshop Website
-
-  [https://best-tufts.github.io/intro_to_16S/intro16S/01_metabarcoding-intro/](https://best-tufts.github.io/intro_to_16S/intro16S/01_metabarcoding-intro/)
+[https://best-tufts.github.io/intro_to_single_cell_rnaseq/](https://best-tufts.github.io/intro_to_single_cell_rnaseq/)
