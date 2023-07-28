@@ -1,4 +1,4 @@
-site_name: Introduction to 16S Data Analysis with DADA2
+site_name: Bioinformatics Education and Services at Tufts
 repo_url: https://github.com/best-tufts/intro_to_16S
 edit_uri: blob/main/docs/
 
@@ -74,7 +74,7 @@ extra_javascript:
 
 nav:
     - Workshop Materials : 
-        - Introduction: intro16S/01_metabarcoding-intro.md
+        - "Introduction to 16S Data Analysis with DADA2": intro16S/01_metabarcoding-intro.md
         - Background: intro16S/02_background.md
         - Setup: intro16S/03_setup.md
         - Quality Control: intro16S/04_quality-control.md
