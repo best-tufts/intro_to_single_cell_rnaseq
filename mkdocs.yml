@@ -75,6 +75,10 @@ extra_javascript:
 nav:
     - Workshop Materials : 
         - "Introduction to Single-Cell RNA-seq": intro_to_single_cell_rnaseq/00_introduction.md
+        - "Single cell RNAseq experiment and clustering workflow": intro_to_single_cell_rnaseq/01_single_cell_exp_workflow.md
+        - "Multi-sample integration and Cell type identification": intro_to_single_cell_rnaseq/02_integration_cell_type_identification.md
+        - "Differential Expression between conditions with replicates": intro_to_single_cell_rnaseq/03_differential_expression.md
+        - "Cell type proportion/composition": intro_to_single_cell_rnaseq/04_cell_type_proportion_composition.md
     - All Workshops:
         - All Workshops: index.md
     
