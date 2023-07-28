@@ -1,5 +1,5 @@
 site_name: Bioinformatics Education and Services at Tufts
-repo_url: https://github.com/best-tufts/intro_to_16S
+repo_url: https://github.com/best-tufts/intro_to_single_cell_rnaseq
 edit_uri: blob/main/docs/
 
 theme:
@@ -74,14 +74,7 @@ extra_javascript:
 
 nav:
     - Workshop Materials : 
-        - "Introduction to 16S Data Analysis with DADA2": intro16S/01_metabarcoding-intro.md
-        - Background: intro16S/02_background.md
-        - Setup: intro16S/03_setup.md
-        - Quality Control: intro16S/04_quality-control.md
-        - Error Models & Sequence Variants: intro16S/05_error-asv.md
-        - Merging Chimeras & Taxonomy: intro16S/06_merging-chimeras-taxonomy.md
-        - Diversity Analysis: intro16S/07_diversity-analysis.md
-        - Differential Abundance: intro16S/08_differential-abundance.md
+        - "Introduction to Single-Cell RNA-seq": intro_to_single_cell_rnaseq/00_introduction.md
     - All Workshops:
         - All Workshops: index.md
     
