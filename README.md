@@ -9,4 +9,4 @@
   
 ## Workshop Website
 
-[https://best-tufts.github.io/intro_to_single_cell_rnaseq/](https://best-tufts.github.io/intro_to_single_cell_rnaseq/)
+[https://best-tufts.github.io/intro_to_single_cell_rnaseq/00_introduction](https://best-tufts.github.io/intro_to_single_cell_rnaseq/00_introduction)
