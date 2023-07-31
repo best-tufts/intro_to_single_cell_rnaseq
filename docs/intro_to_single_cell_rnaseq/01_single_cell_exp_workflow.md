@@ -1,1 +1,1 @@
-## Single cell RNAseq experiment and clustering workflow
+## Single cell RNAseq experiment and Clustering workflow
