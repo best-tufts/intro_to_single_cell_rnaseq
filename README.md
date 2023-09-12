@@ -10,3 +10,5 @@
 ## Workshop Website
 
 [https://best-tufts.github.io/intro_to_single_cell_rnaseq/00_introduction](https://best-tufts.github.io/intro_to_single_cell_rnaseq/00_introduction)
+
+Much of this workshop has been based on https://github.com/hbctraining/scRNA-seq_online
