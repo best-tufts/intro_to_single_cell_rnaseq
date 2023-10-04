@@ -74,7 +74,7 @@ extra_javascript:
 
 nav:
     - Workshop Materials : 
-        - "Introduction to Single-Cell RNA-seq": intro_to_single_cell_rnaseq/00_background.md
+        - "Schedule": intro_to_single_cell_rnaseq/00_background.md
         - "Set up": intro_to_single_cell_rnaseq/01_setup.md
         - "Quality Control": intro_to_single_cell_rnaseq/02_quality_control.md
         - "Integration": intro_to_single_cell_rnaseq/03_integration.md

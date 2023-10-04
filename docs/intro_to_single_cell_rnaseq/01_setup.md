@@ -1,4 +1,4 @@
-## Introduction To Single-Cell RNA-Seq Bioinformatics
+## Setting up your work on the Tufts High Performance Compute (HPC) Cluster
 
 !!! example "Prerequisites"
     - [Request an account](http://research.uit.tufts.edu/) on the Tufts HPC Cluster
