@@ -30,9 +30,9 @@
 #### Day 2
 
 | Time |  Topic  | Instructor |
-|:-----------:|:----------:|:--------:|
+|-----------|----------|--------|
 | 02:00 - 03:00 | [Cell-type identification and Differential Expression](slides/day1_temp.pdf) | [Dr. Rebecca Batorsky](https://disc.tufts.edu/people/rebecca-batorsky) |
-| 03:00 - 04:00 | Hands on Workshop 
-1. [Setup](01_setup.md) 
-2. [Cell-type identification](05_cell_type_identification.md)
-3. [Differential Expression](06_differential_expression.md) |  |
+| 03:00 - 04:00 | Hands on Workshop | |
+| |1. [Setup](01_setup.md) | |
+| |2. [Cell-type identification](05_cell_type_identification.md)| |
+| |3. [Differential Expression](06_differential_expression.md) |  |
