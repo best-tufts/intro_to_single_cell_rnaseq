@@ -20,11 +20,11 @@
 | Time |  Topic  | Instructor |
 |:-----------:|:----------:|:--------:|
 | 02:00 - 03:00 | [Lecture: Quality Control, Integration, Clustering](slides/day1_temp.pdf) | [Dr. Eric Reed](https://disc.tufts.edu/eric-reed) |
-| 03:00 - 04:00 | Hands on Workshop 
-1. [Setup](01_setup.md) 
-2. [Quality Control](02_quality_control.md)
-3. [Integration](03_integration.md)
-4. [Clustering](04_clustering.md) |  |
+| 03:00 - 04:00 | Hands on Workshop |  |
+| | 1. [Setup](01_setup.md) |  |
+| |2. [Quality Control](02_quality_control.md) | |
+| |3. [Integration](03_integration.md)| |
+| |4. [Clustering](04_clustering.md) |  |
 
 
 #### Day 2
