@@ -2,7 +2,7 @@
 
 !!! example "Prerequisites"
     - [Request an account](http://research.uit.tufts.edu/) on the Tufts HPC Cluster
-        - Note if you signed up for the Introduction to Single-Cell RNA-Seq workshop this will have been already taken care of for you!
+        - Note if you signed up for the Introduction to Single-Cell RNA-Seq workshop this will have been done for you.
     - Connect to the [VPN](https://access.tufts.edu/vpn) if off campus
     
 
@@ -21,7 +21,7 @@ Click on `Interactive Apps > RStudio Pax` and you will see a form to fill out to
 - `Amount of memory` : `16GB`
 - `R version` : `4.0.0`
 - `Reservation for class, training, workshop` : `Bioinformatics Workshops`
-    - **NOTE: This reservation will closed on Nov 5th 2023, use `Default` if running through the materials after that date.**
+    - **NOTE: This reservation will be available for registered participants only from Oct 26th - Nov 5th 2023, use `Default` in all other cases.**
 
 Click `Launch` and wait until your session is ready. Click `Connect To RStudio Server`, and you will notice a new window will pop up with RStudio. 
 
@@ -39,13 +39,6 @@ file.copy(from="/cluster/tufts/bio/tools/training/intro_to_scrnaseq",to="~/", re
 ```
 
 ## Project Setup
-Now we are going to use this folder to create a new R project. R projects are great for managing analyses in a portable, self-contained folder. To create an R project from within our `intro_to_scrnaseq` directory we will:
-
-- Go to `File` > `New Project`
-- `Existing Directory`
-- Browse for the `intro_to_scrnaseq` folder
-- Click `Create Project`
-
 Let's navigate to our project in our home directory and open up our workshop script:
 
 - Click on the `Files` tab in the lower right hand Rstudio pane
