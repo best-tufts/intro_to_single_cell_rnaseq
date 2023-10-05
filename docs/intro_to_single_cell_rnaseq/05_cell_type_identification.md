@@ -1,5 +1,3 @@
-## Cell type identification
-
 To start, we load our library path, libraries and set our working directory:
 ```R
 LIB='/cluster/tufts/hpc/tools/R/4.0.0/'
@@ -26,7 +24,8 @@ View a UMAP plot of the clusters.
 ```R
 DimPlot(seurat_integrated, label=T)
 ```
-![](images/umap_res0.4.png)
+
+    ![](images/umap_res0.4.png)
 
 We'll use the [SingleR](https://github.com/LTLA/SingleR) tool with a reference database of expression profiles of known cell types in order to identify our cells and clusters. As mentioned in the lecture, this method measures the correlation of overall gene expression between cells in a reference database with cells in the query dataset in order to label cells  
 
@@ -135,7 +134,7 @@ This takes as an argument our script to be run, which is automatically assigned 
 
 To run it, click on `Terminal` next to `Console` in the bottom portion of the Rstudio application and type `sbatch run_rscript.sh singler_cell.R`. Press enter and your job will be given a number by slurm and placed in the queue.
 
-![](images/terminal.png)
+    ![](images/terminal.png)
 
 To check the status of your job, type `squeue -u tufts-username` and you will see your job status.
 
