@@ -1,19 +1,16 @@
 ## Introduction To Single-Cell RNA-Seq Bioinformatics 
 
-**Content developed by [Data Intensive Studies Center](https://disc.tufts.edu/)**
-
-- [Rebecca Batorsky, PhD, Data Scientist] (https://disc.tufts.edu/people/rebecca-batorsky)
-- [Eric Reed, PhD, Data Scientist](https://disc.tufts.edu/eric-reed)
-
-!!! info ""
-
-
-### Schedule
+In this workshop we will introduce single-cell RNA sequencing and the bioinformatics methods that are used to analyze the data. We will cover common computational algorithms for quality control and clustering as well as give participants hands on experience in analyzing single-cell RNA sequencing data with open source bioinformatics tools.
 
 !!! example "Prerequisites"
     - [Request an account](http://research.uit.tufts.edu/) on the Tufts HPC Cluster
         - Note if you signed up for the Introduction to Single-Cell RNA-Seq workshop this will have been already taken care of for you!
     - Connect to the [VPN](https://access.tufts.edu/vpn) if off campus
+
+!!! info ""
+
+
+### Schedule
 
 #### Day 1
 
@@ -36,3 +33,8 @@
 | |1. [Setup](01_setup.md) | |
 | |2. [Cell-type identification](05_cell_type_identification.md)| |
 | |3. [Differential Expression](06_differential_expression.md) |  |
+
+** Brought to you by [Data Intensive Studies Center](https://disc.tufts.edu/)**
+
+- [Rebecca Batorsky, PhD, Data Scientist](https://disc.tufts.edu/people/rebecca-batorsky)
+- [Eric Reed, PhD, Data Scientist](https://disc.tufts.edu/eric-reed)
