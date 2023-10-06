@@ -25,7 +25,7 @@ View a UMAP plot of the clusters.
 DimPlot(seurat_integrated, label=T)
 ```
 
-    ![](images/umap_res0.4.png)
+![](images/umap_res0.4.png)
 
 We'll use the [SingleR](https://github.com/LTLA/SingleR) tool with a reference database of expression profiles of known cell types in order to identify our cells and clusters. As mentioned in the lecture, this method measures the correlation of overall gene expression between cells in a reference database with cells in the query dataset in order to label cells  
 
