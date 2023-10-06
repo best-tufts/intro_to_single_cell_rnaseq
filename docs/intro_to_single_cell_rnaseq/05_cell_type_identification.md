@@ -56,7 +56,7 @@ colnames(713): GSM112490 GSM112491 ... GSM92233 GSM92234
 colData names(3): label.main label.fine label.ont
 ```
 
-Summarized Experiments have the following form:
+Summarized Experiments have the following form (NOTE fig ref, maybe we covered this already https://bioconductor.org/packages/release/bioc/html/SummarizedExperiment.html)
 
 ![](images/summarized_experiment.png)
 
