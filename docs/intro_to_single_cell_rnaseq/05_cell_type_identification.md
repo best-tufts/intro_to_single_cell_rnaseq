@@ -187,13 +187,95 @@ pheatmap(log10(tab+10))
 ```
 ![](images/pheatmap.png)
 
-We can see for example cluster 10 and cluster 5 have a mix of cells, which may indicate that they contain a type of cell not in our reference database. This is expected since we've used a very general database. Next we'll use a single-cell RNAseq dataset that contains a perfect match and see how the labeling changes.
+Clusters 10 and cluster 5 appear to have a mix of cells, which may indicate that they contain a type of cell not in our reference database. This is expected since we've used a very general database. Next we'll use a single-cell RNAseq dataset that contains a perfect match and see how the labeling changes.
 
 ## Integration Mapping Method (Seurat)
 
-These are PBMC from another source, processed through the Seurat pipeline as our data.
+These are PBMC from another source, processed through the Seurat pipeline as our data. Let's load and view the metadata:
 ```R
 pbmc = readRDS("data/pbmc3k_tutorial.rds")
+head(pbmc)
 ```
-Take a look
+!!! info "output"
+```R
+              orig.ident nCount_RNA nFeature_RNA seurat_annotations percent.mt RNA_snn_res.0.5 seurat_clusters
+AAACATACAACCAC     pbmc3k       2419          779       Memory CD4 T  3.0177759               0               0
+AAACATTGAGCTAC     pbmc3k       4903         1352                  B  3.7935958               3               3
+AAACATTGATCAGC     pbmc3k       3147         1129       Memory CD4 T  0.8897363               2               2
+AAACCGTGCTTCCG     pbmc3k       2639          960         CD14+ Mono  1.7430845               5               5
+AAACCGTGTATGCG     pbmc3k        980          521                 NK  1.2244898               6               6
+AAACGCACTGGTAC     pbmc3k       2163          781       Memory CD4 T  1.6643551               2               2
+AAACGCTGACCAGT     pbmc3k       2175          782              CD8 T  3.8160920               4               4
+AAACGCTGGTTCTT     pbmc3k       2260          790              CD8 T  3.0973451               4               4
+AAACGCTGTAGCCA     pbmc3k       1275          532        Naive CD4 T  1.1764706               4               4
+AAACGCTGTTTCTG     pbmc3k       1103          550       FCGR3A+ Mono  2.9011786               5               5
+```
 
+Set the identities and plot
+```R
+Idents(pbmc) = "seurat_annotations"
+DimPlot(pbmc, label=T)
+```
+![](images/pbmc_label.png)
+
+Make normalization methods agree:
+```R
+pbmc <- SCTransform(pbmc, verbose = TRUE)
+```
+
+Find the transfer anchors:
+```R
+anchors <- FindTransferAnchors(reference = pbmc, 
+                               query = seurat_integrated,
+                               dims = 1:30, 
+                               reference.reduction = "pca")
+```
+
+Make cell type predictions by transfering the anchors:
+```R
+predictions <- TransferData(anchorset = anchors, 
+                            refdata = pbmc$seurat_annotations,
+                            dims = 1:30)
+```
+
+```R
+                     predicted.id prediction.score.Memory.CD4.T prediction.score.B prediction.score.CD14..Mono prediction.score.NK prediction.score.CD8.T
+ctrl_AAACATACAATGCC-1  Naive CD4 T                     0.1323132        0.000000000                   0.0000000                   0            0.003698254
+ctrl_AAACATACATTTCC-1   CD14+ Mono                     0.0000000        0.000000000                   0.6617589                   0            0.000000000
+ctrl_AAACATACCAGAAA-1   CD14+ Mono                     0.0000000        0.000000000                   0.8092495                   0            0.000000000
+ctrl_AAACATACCAGCTA-1   CD14+ Mono                     0.0000000        0.000000000                   0.7856636                   0            0.000000000
+ctrl_AAACATACCATGCA-1  Naive CD4 T                     0.1106743        0.005805717                   0.0000000                   0            0.015044274
+ctrl_AAACATACCTCGCT-1   CD14+ Mono                     0.0000000        0.000000000                   0.8502115                   0            0.000000000
+                      prediction.score.Naive.CD4.T prediction.score.FCGR3A..Mono prediction.score.DC prediction.score.Platelet prediction.score.max
+ctrl_AAACATACAATGCC-1                    0.8639886                     0.0000000           0.0000000                         0            0.8639886
+ctrl_AAACATACATTTCC-1                    0.0000000                     0.1643801           0.1624098                         0            0.6617589
+ctrl_AAACATACCAGAAA-1                    0.0000000                     0.1609336           0.0000000                         0            0.8092495
+ctrl_AAACATACCAGCTA-1                    0.0000000                     0.1046896           0.0000000                         0            0.7856636
+ctrl_AAACATACCATGCA-1                    0.8624720                     0.0000000           0.0000000                         0            0.8624720
+ctrl_AAACATACCTCGCT-1                    0.0000000                     0.1220872           0.0000000                         0            0.8502115
+```
+
+Add the predicted id to the metadata:
+```R
+seurat_integrated <- AddMetaData(seurat_integrated, 
+                                 metadata = predictions)
+```
+
+Set the Idents and plot:
+```R
+Idents(seurat_integrated) = "predicted.id"
+DimPlot(seurat_integrated, label=T )
+```
+![](images/integration_mapping_labeled.png)
+
+
+We can view the breakdown per cluster as a heatmap:
+```R
+tab <- table(cluster=seurat_integrated$integrated_snn_res.0.4, label=seurat_integrated$predicted.id)
+pheatmap(log10(tab+10)) 
+```
+![](images/heatmap_integration_mapping.png)
+
+Now it is more clear that cluster 5 is CD8-T and cluster 10 is Dendritic Cells. 
+
+                            
