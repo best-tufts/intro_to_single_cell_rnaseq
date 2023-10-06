@@ -1,3 +1,5 @@
+In this section, we'll demonstrate two ways to label cells in our dataset. The steps in this tutorial come from the [SingleR vignette](https://bioconductor.org/packages/devel/bioc/vignettes/SingleR/inst/doc/SingleR.html) and (Seurat Integration Mapping Vignette)[https://satijalab.org/seurat/articles/integration_mapping.html], and are applied here to our workshop dataset.
+
 To start, we load our library path, libraries and set our working directory:
 ```R
 LIB='/cluster/tufts/hpc/tools/R/4.0.0/'
@@ -9,7 +11,6 @@ library(celldex)
 library(pheatmap)
 setwd("~/intro_to_scrnaseq/")
 ```
-
 We begin by loading our integrated samples.
 ```R
 seurat_integrated = readRDS("results/integrated_seurat.rds")
