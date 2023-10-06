@@ -27,6 +27,8 @@ DimPlot(seurat_integrated, label=T)
 
 ![](images/umap_res0.4.png)
 
+
+## Correlation Method (SingleR) 
 We'll use the [SingleR](https://github.com/LTLA/SingleR) tool with a reference database of expression profiles of known cell types in order to identify our cells and clusters. As mentioned in the lecture, this method measures the correlation of overall gene expression between cells in a reference database with cells in the query dataset in order to label cells  
 
 ![](images/singler.png)
@@ -178,7 +180,7 @@ DimPlot(seurat_integrated, label=T)
 ```
 ![](images/cell_label.png)
 
-We see the picture is more complicatedm with some clusters containing a mix of cell labels. We can view the breakdown per cluster as a heatmap:
+We see the picture is more complex and clusters containing a mix of cell labels. We can view the breakdown per cluster as a heatmap:
 ```R
 tab <- table(cluster=seurat_integrated$integrated_snn_res.0.4, label=pred$labels)
 pheatmap(log10(tab+10)) 
@@ -186,4 +188,12 @@ pheatmap(log10(tab+10))
 ![](images/pheatmap.png)
 
 We can see for example cluster 10 and cluster 5 have a mix of cells, which may indicate that they contain a type of cell not in our reference database. This is expected since we've used a very general database. Next we'll use a single-cell RNAseq dataset that contains a perfect match and see how the labeling changes.
+
+## Integration Mapping Method (Seurat)
+
+These are PBMC from another source, processed through the Seurat pipeline as our data.
+```R
+pbmc = readRDS("data/pbmc3k_tutorial.rds")
+```
+Take a look
 
