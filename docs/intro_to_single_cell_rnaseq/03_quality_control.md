@@ -224,12 +224,3 @@ That's it! We not have a cell profile- and gene-wise QC'd `Seurat` object. In th
 ```R
 saveRDS(filtered_seurat, file.path(baseDir, "data/filtered_seurat"))
 ```
-
-
-
-
-
-
-
-
-
