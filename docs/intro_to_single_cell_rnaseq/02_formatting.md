@@ -346,6 +346,5 @@ That's it! At this point, we can save our merged data set and move on to quality
 ```R
 saveRDS(merged_seurat, file.path(baseDir, "data/merged_seurat.rds"))
 ```
-```
 
 
