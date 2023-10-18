@@ -138,8 +138,6 @@ table(integ_seurat[[c("integrated_snn_res.0.4", "sample")]])
 
 ## Save seurat object
 
-That's it! At this point, we can save our merged data set and move on to quality control.
-
 ```R
 saveRDS(integ_seurat, file.path(baseDir, "data/clustered_seurat.rds"))
 ```
