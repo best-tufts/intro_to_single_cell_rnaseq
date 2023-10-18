@@ -1,6 +1,6 @@
 # Single Cell RNA Sequencing Quality Control
 
-In this section we will describe strategies for filtering out "low-quality" cell profiles from scRNAseq data. We will perform quality control our two-sample combined and formatted PBMC scRNAseq data set [`Seurat`] object generated in the previous section.nPortions of this section have been adapted from a previous Tufts HPC [workshop](https://hbctraining.github.io/scRNA-seq/lessons/03_SC_quality_control-setup.html).
+In this section we will describe strategies for filtering out "low-quality" cell profiles from scRNAseq data. We will perform quality control our two-sample combined and formatted PBMC scRNAseq data set [`Seurat`] object generated in the previous section. Portions of this section have been adapted from a previous Tufts HPC [workshop](https://hbctraining.github.io/scRNA-seq/lessons/03_SC_quality_control-setup.html).
 
 ## Setting up R environment
 
@@ -29,7 +29,7 @@ library(ggplot2)
 library(cowplot)
 ```
 
-### Set base directoryZ
+### Set base directory
 
 ```R
 baseDir <- "~/intro_to_scrnaseq/"
