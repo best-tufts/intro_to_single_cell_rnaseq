@@ -136,6 +136,8 @@ merged_seurat@meta.data %>%
   	facet_wrap(~sample)
 ```
 
+![](images/nGeneVnUMI.png)
+
 Next, we can check the number of cells that pass each threshold.
 
 ```R
