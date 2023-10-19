@@ -217,7 +217,8 @@ DimPlot(seurat_integrated, label=T)
 
 We see the picture is more complex and clusters containing a mix of cell labels. We can view the breakdown per cluster as a heatmap:
 ```R
-tab <- table(cluster=seurat_integrated$integrated_snn_res.0.4, label=pred$labels)
+tab <- table(cluster=seurat_integrated$integrated_snn_res.0.4,
+             label=pred$labels)
 pheatmap(log10(tab+10)) 
 ```
 ![](images/pheatmap.png)
@@ -309,7 +310,8 @@ DimPlot(seurat_integrated, label=T )
 
 We can view the breakdown per cluster as a heatmap:
 ```R
-tab <- table(cluster=seurat_integrated$integrated_snn_res.0.4, label=seurat_integrated$predicted.id)
+tab <- table(cluster=seurat_integrated$integrated_snn_res.0.4,
+             label=seurat_integrated$predicted.id)
 pheatmap(log10(tab+10)) 
 ```
 ![](images/heatmap_integration_mapping.png)
