@@ -249,18 +249,14 @@ Next, we will perform data integration to "harmonize" the expression profiles ac
 
 ## Data Integration
 
-The data integration procedure from the `Seurat` package is carried out in four main steps
+The data integration workflow from the `Seurat` package is carried out in four main steps
 
 1. Identification of shared highly variable genes across data sets, performed by the `SelectIntegrationFeatures()`.
 2. Ensure that each data set has been normalized and scaled based on these features, performed by `PrepSCTIntegration()`.
-3. Scores the relative similarity of individual cells across data sets, performed by `FindIntegrationAnchors()`. This is actually performed in two substantial sub-steps:
+3. Scores the relative similarity of individual cells across data sets, performed by `FindIntegrationAnchors()`. This is actually performed in two sub-steps:
   - Canonical Correlation Analysis (CCA)
   - Mutual Nearest Neighbors (MMN)
 4. Projects the expression profiles of individual cells to be more similar to their counterparts across data sets, performed by `IntegrateData()`.
-
-### Canonical Correlation Analysis
-
-### Mutual Nearest Neighbors
 
 
 We begin by splitting our `Seurat` object into a `list` object of two `Seurat` objects for each sample, "ctrl" and "stim", with the `SplitObject()` `Seurat` function.
