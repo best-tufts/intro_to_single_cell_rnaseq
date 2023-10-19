@@ -1,4 +1,4 @@
-In this section, we'll demonstrate two ways to label cells in our dataset. The steps in this tutorial come from the [SingleR vignette](https://bioconductor.org/packages/devel/bioc/vignettes/SingleR/inst/doc/SingleR.html) and (Seurat Integration Mapping Vignette)[https://satijalab.org/seurat/articles/integration_mapping.html], and are applied here to our workshop dataset.
+In this section, we'll demonstrate two ways to label cells in our dataset. The steps in this tutorial come from the [SingleR vignette](https://bioconductor.org/packages/devel/bioc/vignettes/SingleR/inst/doc/SingleR.html) and [Seurat Integration Mapping Vignette](https://satijalab.org/seurat/articles/integration_mapping.html), and are applied here to our workshop dataset.
 
 To start, we load our library path, libraries and set our working directory:
 ```R
@@ -16,14 +16,16 @@ We begin by loading our integrated samples.
 seurat_integrated = readRDS("results/integrated_seurat.rds")
 ```
 
-Set our identities to be the clusters found at the resolution 0.4
+Set our identities to be the clusters found at the resolution 0.4 and plot UMAP:
 ```R
 Idents(object = seurat_integrated) <- "integrated_snn_res.0.4"
+DimPlot(seurat_integrated, label=T)
 ```
 
-View a UMAP plot of the clusters.
+Set our identities to be the sample type and plot UMAP:
 ```R
-DimPlot(seurat_integrated, label=T)
+Idents(object = seurat_integrated) <- "sample"
+DimPlot(seurat_integrated)
 ```
 
 ![](images/umap_res0.4.png)
@@ -103,6 +105,38 @@ pred_cluster <- SingleR(test = query_counts,
 saveRDS(pred_cluster, "results/singler_hpca_cluster_res0.4.rds")
 ```
 
+We can view the results, which contain a score for every cell type plus the final label:
+```R
+view(pred_cluster)
+```
+
+The scores can be plotted as a heatmap:
+```R
+plotScoreHeatmap(pred_cluster,
+                 show_colnames = TRUE)
+```
+
+![](images/pred_cluster_heatmap.png)
+
+Now, add the labels to the Seurat object:
+# todo may need to break this up
+```R
+new_names = pred_cluster$labels
+names(new_names) = rownames(pred_cluster)
+seurat_integrated = RenameIdents(seurat_integrated, 
+                                 new_names)
+seurat_integrated$labels = Idents(seurat_integrated)
+```
+
+Let's look at the labeled clusters:
+```R
+Idents(seurat_integrated) = "labels"
+DimPlot(seurat_integrated, label=T)
+```
+
+![](images/pred_cluster_umap.png)
+
+
 Running on the individual cell level will take longer, so we'll run it as a batch job. To do this, navigate to our scripts directory and open `singler_cell.R`. This file contains the key steps above, but eliminates the `labels` argument from the SingleR command.
 
 ```R
@@ -115,7 +149,7 @@ saveRDS(pred_cluster, "results/singler_hpca_cell.rds")
 ```
 
 To run it, we use the `run_r_script.sh` script in the `scripts` directory. Click to open the file:
-
+#todo change partition
 ```bash
 #!/bin/bash
 #SBATCH -J run_r_script
@@ -137,7 +171,7 @@ This takes as an argument our script to be run, which is automatically assigned 
 
 To run it, click on `Terminal` next to `Console` in the bottom portion of the Rstudio application and type `sbatch run_rscript.sh singler_cell.R`. Press enter and your job will be given a number by slurm and placed in the queue.
 
-    ![](images/terminal.png)
+![](images/terminal.png)
 
 To check the status of your job, type `squeue -u tufts-username` and you will see your job status.
 
@@ -164,11 +198,11 @@ Now we can view the labeled clusters:
 ```R
 DimPlot(seurat_integrated, label=T)
 ```
-![](images/cluster_label.png)
+![](images/pred_cluster_umap.png)
 
 
-Now, take a look at the cell level labels which should be done running by now. We'll this time, we'll add the `pruned labeles` to the seurat object metadata:
-
+Now, take a look at the cell level labels which should be done running by now. We'll this time, we'll add the `pruned labeles` to the seurat object metadata. Note we add it directly to the metadata because it has one entry for each cell.
+# todo better explain
 ```
 seurat_integrated  = AddMetaData(seurat_integrated,
                                  pred$pruned.labels,
@@ -189,6 +223,8 @@ pheatmap(log10(tab+10))
 ![](images/pheatmap.png)
 
 Clusters 10 and cluster 5 appear to have a mix of cells, which may indicate that they contain a type of cell not in our reference database. This is expected since we've used a very general database. Next we'll use a single-cell RNAseq dataset that contains a perfect match and see how the labeling changes.
+
+
 
 ## Integration Mapping Method (Seurat)
 
@@ -227,16 +263,17 @@ pbmc <- SCTransform(pbmc, verbose = TRUE)
 Find the transfer anchors:
 ```R
 anchors <- FindTransferAnchors(reference = pbmc, 
-                               query = seurat_integrated,
-                               dims = 1:30, 
-                               reference.reduction = "pca")
+                                   query = seurat_integrated,
+                                   reduction = "pcaproject",
+                                   reference.reduction = "pca",
+                                   dims = 1:30)
 ```
 
 Make cell type predictions by transfering the anchors:
 ```R
-predictions <- TransferData(anchorset = anchors, 
-                            refdata = pbmc$seurat_annotations,
-                            dims = 1:30)
+predictions<- TransferData(anchorset = anchors, 
+                                refdata = pbmc$seurat_annotations,
+                                dims = 1:30)
 ```
 
 ```R
@@ -278,5 +315,3 @@ pheatmap(log10(tab+10))
 ![](images/heatmap_integration_mapping.png)
 
 Now it is more clear that cluster 5 is CD8-T and cluster 10 is Dendritic Cells. 
-
-                            
