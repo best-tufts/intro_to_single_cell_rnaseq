@@ -40,7 +40,7 @@ To copy over the data and scripts we will need for the workshop into our home di
 file.copy(from="/cluster/tufts/bio/tools/training/intro_to_scrnaseq",to="~/", recursive = TRUE)
 ```
 
-To see that our folder was copied over, we'll refresh our file list in the lower right hand Rstudio pane by hitting the `refresh` arrow ![](images/refresh.png). 
+To see that our folder was copied over, we'll refresh our file list in the lower right hand Rstudio pane by hitting the `refresh` arrow ![](images/refresh.png){width=50%, height=50%}. 
 
 ## Opening our first script
 Let's navigate to our project in our home directory and open up our workshop script:
