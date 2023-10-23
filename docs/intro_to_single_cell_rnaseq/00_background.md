@@ -26,7 +26,7 @@ In this workshop we will introduce single-cell RNA sequencing and the bioinform
 | 03:00 - 04:00 | Hands on Workshop | |
 
 
-** Brought to you by [Data Intensive Studies Center](https://disc.tufts.edu/). Please email disc@tufts.edu with questions.**
+Brought to you by [Data Intensive Studies Center](https://disc.tufts.edu/). Please email disc@tufts.edu with questions.
 
 - [Rebecca Batorsky, PhD, Data Scientist](https://disc.tufts.edu/people/rebecca-batorsky)
 - [Eric Reed, PhD, Data Scientist](https://disc.tufts.edu/eric-reed)
