@@ -24,7 +24,7 @@ Click on `Interactive Apps > RStudio Pax` and you will see a form to fill out to
 
 Click `Launch` and wait until your session is ready. Click `Connect To RStudio Server`, and a new tab will open with Rstudio. 
 
- ![](images/rstudio.png){width=150%, height=150%}
+ ![](images/rstudio1.png)
 
 
 ??? question "Are you connected to RStudio?"
