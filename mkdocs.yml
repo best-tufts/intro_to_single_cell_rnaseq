@@ -76,8 +76,8 @@ nav:
     - Workshop Materials : 
         - "Schedule": intro_to_single_cell_rnaseq/00_background.md
         - "Set up": intro_to_single_cell_rnaseq/01_setup.md
-        - "Formatting": intro_to_single_cell_rnaseq/01_formatting.md
-        - "Quality Control": intro_to_single_cell_rnaseq/02_quality_control.md
+        - "Formatting": intro_to_single_cell_rnaseq/02_formatting.md
+        - "Quality Control": intro_to_single_cell_rnaseq/03_quality_control.md
         - "Integration": intro_to_single_cell_rnaseq/04_integration.md
         - "Clustering": intro_to_single_cell_rnaseq/05_clustering.md
         - "Cell Type Identification": intro_to_single_cell_rnaseq/06_cell_type_identification.md
