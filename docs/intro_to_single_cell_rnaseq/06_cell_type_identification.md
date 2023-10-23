@@ -1,10 +1,10 @@
 ## Cell-type Identification
 In this section, we'll demonstrate two ways to label cells in our dataset. 
 
-1)[SingleR](https://bioconductor.org/packages/devel/bioc/vignettes/SingleR/inst/doc/SingleR.html) method, which uses correlation of gene expression
-2) [Seurat Integration Mapping](https://satijalab.org/seurat/articles/integration_mapping.html) which uses an integration method that is very similar to the one we used to integrate our two samples.
+- [SingleR](https://bioconductor.org/packages/devel/bioc/vignettes/SingleR/inst/doc/SingleR.html) method, which uses correlation of gene expression
+- [Seurat Integration Mapping](https://satijalab.org/seurat/articles/integration_mapping.html) which uses an integration method that is very similar to the one we used to integrate our two samples.
 
-To start, we load our library path, libraries and set our working directory:
+This workshop requires a series of R libraries. In order to load these libraries we will first set their path in our R environment.
 ```{r}
 LIB='/cluster/tufts/hpc/tools/R/4.0.0/'
 .libPaths(c("",LIB))
@@ -32,19 +32,19 @@ baseDir <- "~/intro_to_scrnaseq/"
 
 We begin by loading our integrated samples.
 ```R
-seurat_integrated = readRDS("results/clustered_seurat.rds")
+integ_seurat = readRDS("results/clustered_seurat.rds")
 ```
 
 Set our identities to be the clusters found at the resolution 0.4 and plot UMAP:
 ```R
-Idents(object = seurat_integrated) <- "integrated_snn_res.0.4"
-DimPlot(seurat_integrated, label=T)
+Idents(object = integ_seurat) <- "integrated_snn_res.0.4"
+DimPlot(integ_seurat, label=T)
 ```
 
 Set our identities to be the clusters found at the resolution 0.4 and plot UMAP: 
 ```R
-Idents(object = seurat_integrated) <- "sample"
-DimPlot(seurat_integrated)
+Idents(object = integ_seurat) <- "sample"
+DimPlot(integ_seurat)
 ```
 
 ![](images/umap_res0.4.png)
@@ -101,18 +101,18 @@ unique(hpca$label.main)
 [33] "Myelocyte"            "Pre-B_cell_CD34-"     "Pro-B_cell_CD34+"     "Pro-Myelocyte" 
 ```
 
-Our data to be labeled is input into SingleR as a normalized count matrix, which we can extract from the `RNA` assay our `seurat_integrated` object:
+Our data to be labeled is input into SingleR as a normalized count matrix, which we can extract from the `RNA` assay our `integ_seurat` object:
 ```R
-query_counts = seurat_integrated@assays$RNA@data
+query_counts = integ_seurat@assays$RNA@data
 ```
 
 SingleR can be run both on the cluster level and the individual cell level. For cluster-level annotation, the average expression profile of each cluster is used and a single label is generated. This is much faster to run, so we'll start here.
 
 ```R
-query_clusters = seurat_integrated@meta.data$integrated_snn_res.0.4
+query_clusters = integ_seurat@meta.data$integrated_snn_res.0.4
 ```
 
-The following command runs SingleR on the cluster level, which should take only a few seconds. We'll save the result to a file.
+The following command runs SingleR on the cluster level, which should take only a few seconds. 
 ```R
 pred_cluster <- SingleR(test = query_counts,
                         ref = hpca,
@@ -129,13 +129,22 @@ We can view the results, which contain a score for every cell type plus the fina
 view(pred_cluster)
 ```
 
-The scores can be plotted as a heatmap:
-```R
-plotScoreHeatmap(pred_cluster,
-                 show_colnames = TRUE)
+Select the score data to plot as a heatmap and the `label` column to annotate:
+```{r}
+scores = data.frame(pred_cluster) %>%
+  dplyr::select(starts_with("scores")) 
+
+labels = data.frame(pred_cluster) %>%
+  dplyr::select("labels")
 ```
 
-![](images/pred_cluster_heatmap.png)
+The scores can be plotted as a heatmap:
+```{r}
+pheatmap(scores,
+         annotation_row = labels) 
+```
+
+![](images/pred_cluster_pheatmap.png)
 
 Now, make a named list with new names:
 ```R
@@ -146,15 +155,15 @@ new_names
 
 Add the names to metadata:
 ```R
-seurat_integrated = RenameIdents(seurat_integrated, 
+integ_seurat = RenameIdents(integ_seurat, 
                                  new_names)
-seurat_integrated$labels = Idents(seurat_integrated)
+integ_seurat$labels = Idents(integ_seurat)
 ```
 
 Let's look at the labeled clusters:
 ```R
-Idents(seurat_integrated) = "labels"
-DimPlot(seurat_integrated, 
+Idents(integ_seurat) = "labels"
+DimPlot(integ_seurat, 
 label=T)
 ```
 
@@ -186,16 +195,21 @@ To run it, we use the bash script `run_singler_cell.sh` script in the `scripts` 
 module purge
 module load R/4.0.0
 
-Rscript --no-save singler_cell.R
+Rscript --no-save 06_singler_cell.R
 ```
 
 This contains an sbatch header which gives instructions to the HPC job scheduler, 'slurm', about resources that the job will need. 
 
-To run it, click on `Terminal` next to `Console` in the bottom portion of the Rstudio application and type `sbatch run_rscript.sh singler_cell.R`. Press enter and your job will be given a number by slurm and placed in the queue.
+To run the script:
+- Click on `Terminal` next to `Console` in the bottom portion of the Rstudio application
+- Change to our `scripts` directory by typing `cd intro_to_scrnaseq/scripts`
+- Type `sbatch run_singler_cell.sh` and press enter. 
+- Your job will be given a number by slurm and placed in the queue.
+- To check the status of your job, type `squeue -u tufts-username` and you will see your job status. 
 
 ![](images/terminal.png)
 
-To check the status of your job, type `squeue -u tufts-username` and you will see your job status.
+To check the status of your job, type `squeue -u tufts-username` and you will see your job status. The job will take several minutes to run.
 
 Let's load the prepossessed results in the meantime:
 ```{r}
@@ -204,23 +218,23 @@ pred_cell = readRDS(file.path(baseDir,"data/singler_hpca_cell.rds"))
 
 Take a look at the cell level labels which should be done running by now. We'll this time, we'll add the `pruned labeles` to the seurat object metadata. Note we add it directly to the metadata because it has one entry for each cell.
 ```
-seurat_integrated  = AddMetaData(seurat_integrated,
+integ_seurat  = AddMetaData(integ_seurat,
                                  pred_cell$pruned.labels,
                                  "hpca.labels")
 ```
 
 Assign the idents and make a plot:
 ```R
-Idents(seurat_integrated) = "hpca.labels"
-DimPlot(seurat_integrated, 
+Idents(integ_seurat) = "hpca.labels"
+DimPlot(integ_seurat, 
         label=T)
 ```
 ![](images/cell_label.png)
 
 We see the picture is more complex and clusters containing a mix of cell labels. We can view the breakdown per cluster as a heatmap:
 ```R
-tab <- table(cluster=seurat_integrated$integrated_snn_res.0.4,
-             label=pred$labels)
+tab <- table(cluster=integ_seurat$integrated_snn_res.0.4,
+             label=pred_cell$labels)
 pheatmap(log10(tab+10)) 
 ```
 ![](images/pheatmap.png)
@@ -232,7 +246,7 @@ Clusters 10 and cluster 5 appear to have a mix of cells, which may indicate that
 
 These are PBMC from another source, processed through the Seurat pipeline as our data. Let's load and view the metadata:
 ```R
-pbmc = readRDS("data/pbmc3k_tutorial.rds")
+pbmc = readRDS(file.path(baseDir, "data/pbmc_reference.rds"))
 head(pbmc)
 ```
 !!! info "output"
@@ -257,15 +271,11 @@ DimPlot(pbmc, label=T)
 ```
 ![](images/pbmc_label.png)
 
-Make normalization methods agree:
-```R
-pbmc <- SCTransform(pbmc, verbose = TRUE)
-```
 
 Find the transfer anchors:
 ```R
 anchors <- FindTransferAnchors(reference = pbmc, 
-                                   query = seurat_integrated,
+                                   query = integ_seurat,
                                    reduction = "pcaproject",
                                    reference.reduction = "pca",
                                    dims = 1:30)
@@ -297,22 +307,22 @@ ctrl_AAACATACCTCGCT-1                    0.0000000                     0.1220872
 
 Add the predicted id to the metadata:
 ```R
-seurat_integrated <- AddMetaData(seurat_integrated, 
+integ_seurat <- AddMetaData(integ_seurat, 
                                  metadata = predictions)
 ```
 
 Set the Idents and plot:
 ```R
-Idents(seurat_integrated) = "predicted.id"
-DimPlot(seurat_integrated, label=T )
+Idents(integ_seurat) = "predicted.id"
+DimPlot(integ_seurat, label=T )
 ```
 ![](images/integration_mapping_labeled.png)
 
 
 We can view the breakdown per cluster as a heatmap:
 ```R
-tab <- table(cluster=seurat_integrated$integrated_snn_res.0.4,
-             label=seurat_integrated$predicted.id)
+tab <- table(cluster=integ_seurat$integrated_snn_res.0.4,
+             label=integ_seurat$predicted.id)
 pheatmap(log10(tab+10)) 
 ```
 ![](images/heatmap_integration_mapping.png)
@@ -321,5 +331,5 @@ Now it is more clear that cluster 5 is CD8-T and cluster 10 is Dendritic Cells.
 
 Finally, we have to save the labeled object:
 ```R
-saveRDS(seurat_integrated, file.path(baseDir,"results/labeled_seurat.rds"))
+saveRDS(integ_seurat, file.path(baseDir,"results/labeled_seurat.rds"))
 ```
