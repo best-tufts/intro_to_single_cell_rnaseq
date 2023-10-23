@@ -9,3 +9,6 @@
 @font-face {
     font-weight: bold;
 }
+.md-content {
+  --md-typeset-a-color: #09bfdd;
+}
