@@ -9,9 +9,7 @@
 @font-face {
     font-weight: bold;
 }
-a:link {
-    color: #0048ba;
-}
+
 .md-content {
   --md-typeset-a-color: #0048ba;
 }
