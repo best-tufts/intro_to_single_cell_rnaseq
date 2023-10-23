@@ -1,4 +1,4 @@
-## Setting up your work on the Tufts High Performance Compute (HPC) Cluster
+# Setting up your work on the Tufts High Performance Compute (HPC) Cluster
 
 !!! example "Prerequisites"
     - [Request an account](http://research.uit.tufts.edu/) on the Tufts HPC Cluster. Note if you signed up for the Introduction to Single-Cell RNA-Seq workshop this will have been done for you.
@@ -22,7 +22,7 @@ Click on `Interactive Apps > RStudio Pax` and you will see a form to fill out to
 - `Reservation for class, training, workshop` : `Bioinformatics Workshops`
     - **NOTE: This reservation will be available for registered participants only from Oct 26th - Nov 5th 2023, use `Default` in all other cases.**
 
-Click `Launch` and wait until your session is ready. Click `Connect To RStudio Server`, and you will notice a new window will pop up with RStudio.  When you open up RStudio it will look something like below. 
+Click `Launch` and wait until your session is ready. Click `Connect To RStudio Server`, and a new tab will open with Rstudio. 
 
  ![](images/rstudio.png)
 
@@ -40,11 +40,9 @@ To copy over the data and scripts we will need for the workshop into our home di
 file.copy(from="/cluster/tufts/bio/tools/training/intro_to_scrnaseq",to="~/", recursive = TRUE)
 ```
 
-To see that our folder was copied over, we'll refresh our file list in the lower right hand Rstudio pane by hitting the `refresh` arrow ![](images/refresh.png){width=50%, height=50%}. 
+To see that our folder was copied over, we'll refresh our file list in the lower right hand Rstudio pane by clicking the `refresh` arrow ![](images/refresh.png){width=50%, height=50%}. 
 
-## Opening our first script
-Let's navigate to our project in our home directory and open up our workshop script:
-
+To open our first workshop script:
 - Click on the `Files` tab in the lower right hand Rstudio pane
 - Click on the `intro_to_scrnaseq` directory
 - Click on the `scripts` folder
