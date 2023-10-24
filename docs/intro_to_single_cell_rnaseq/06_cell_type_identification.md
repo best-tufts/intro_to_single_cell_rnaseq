@@ -1,9 +1,8 @@
 ---
 title: "Cell type identification"
-output: html_notebook
 ---
 
-## Cell-type Identification
+# Cell-type Identification [DRAFT]
 In this section, we'll demonstrate two ways to label cells in our dataset. 
 
 - [SingleR](https://bioconductor.org/packages/devel/bioc/vignettes/SingleR/inst/doc/SingleR.html) method, which uses correlation of gene expression   
