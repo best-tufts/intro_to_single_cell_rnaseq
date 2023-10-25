@@ -14,13 +14,13 @@ theme:
   palette:
     - scheme: default
       primary: indigo
-      accent: indigo
+      accent: blue
       toggle:
         icon: material/brightness-7
         name: Switch to dark mode
     - scheme: slate
       primary: indigo
-      accent: indigo
+      accent: blue
       toggle:
         icon: material/brightness-4
         name: Switch to light mode
@@ -76,11 +76,12 @@ nav:
     - Workshop Materials : 
         - "Schedule": intro_to_single_cell_rnaseq/00_background.md
         - "Set up": intro_to_single_cell_rnaseq/01_setup.md
-        - "Quality Control": intro_to_single_cell_rnaseq/02_quality_control.md
-        - "Integration": intro_to_single_cell_rnaseq/03_integration.md
-        - "Clustering": intro_to_single_cell_rnaseq/04_clustering.md
-        - "Cell Type Identification": intro_to_single_cell_rnaseq/05_cell_type_identification.md
-        - "Differential Expression": intro_to_single_cell_rnaseq/06_differential_expression.md
+        - "Formatting": intro_to_single_cell_rnaseq/02_formatting.md
+        - "Quality Control": intro_to_single_cell_rnaseq/03_quality_control.md
+        - "Integration": intro_to_single_cell_rnaseq/04_integration.md
+        - "Clustering": intro_to_single_cell_rnaseq/05_clustering.md
+        - "Cell Type Identification": intro_to_single_cell_rnaseq/06_cell_type_identification.md
+        - "Differential Expression": intro_to_single_cell_rnaseq/07_differential_expression.md
     - All Workshops:
         - All Workshops: index.md
     
