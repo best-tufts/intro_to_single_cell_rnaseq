@@ -155,7 +155,7 @@ DimPlot(integ_seurat,
 Running `SingleR` on the cell level uses the same method but eliminates the `clusters` argument from the command and enables the default pruning process. It will take ~20 minutes to run, so we'll run it as a batch job and not interactively (do not run the below code in Rstudio).
 
 ```{R,eval=FALSE}
-# DO NOT RUN!
+# DON'T RUN!
 pred_cell <- SingleR(test = query_counts,
                       ref = hpca,
                       assay.type.test="logcounts",
@@ -230,9 +230,9 @@ pheatmap(tab)
 ```
 ![](images/pred_cell_heatmap.png)
 
-??? question "Are the dominant cell-level labels the same as the cluster-level labels? 
- - Add a row annotation of the cluster-level labels in order to compare visually". 
-
+??? question "Are the dominant cell-level labels the same as the cluster-level labels?" 
+    - Add a row annotation of the cluster-level labels in order to compare visually
+    
 Some clusters appear to have a mix of cells, which may indicate that they contain a type of cell not in our reference database. This is expected since we've used a very general database. Next we'll use a single-cell RNAseq dataset that we expect will have a better match to our data.
 
 ## Seurat Integration Mapping
