@@ -47,3 +47,4 @@ To open our first workshop script:
 - Click on the `intro_to_scrnaseq` directory
 - Click on the `scripts` folder
 - Click on the `02_formatting.Rmd` script
+

@@ -3,26 +3,27 @@ title: "Cell type identification"
 ---
 
 # Cell-type Identification [DRAFT]
-In this section, we'll demonstrate two ways to label cells in our dataset. 
+In this section, we'll demonstrate two automated methods to label cells in our dataset using reference datasets with known cell labels.
 
-- [SingleR](https://bioconductor.org/packages/devel/bioc/vignettes/SingleR/inst/doc/SingleR.html) method, which uses correlation of gene expression   
-- [Seurat Integration Mapping](https://satijalab.org/seurat/articles/integration_mapping.html) which uses an integration method that is very similar to the one we used to integrate our two samples.
+- [SingleR](https://bioconductor.org/packages/devel/bioc/vignettes/SingleR/inst/doc/SingleR.html) method, which uses correlation of gene expression. This method can use both single cell and bulk RNAseq reference datasets
+- [Seurat Integration Mapping](https://satijalab.org/seurat/articles/integration_mapping.html) which applies integration between a labeled, reference single-cell RNAseq dataset and our query dataset
 
-To start, we set our library path:
+To start, we set our library path on the HPC cluster:
 ```R
 LIB='/cluster/tufts/hpc/tools/R/4.0.0/'
 .libPaths(c("",LIB))
 ```
 
 We require three new packages:
-1) Singler
-2) celldex
-3) pheatmap
+- [Singler](https://bioconductor.org/packages/release/bioc/html/SingleR.html)
+- [celldex](https://bioconductor.org/packages/release/data/experiment/html/celldex.html): A collection of reference expression datasets with cell type labels 
+- [pheatmap](https://cran.r-project.org/web/packages/pheatmap/index.html) A package to make "pretty" heatmaps.
 
 ```R
 suppressPackageStartupMessages({
   library(tidyverse)
   library(Seurat)
+  library(cowplot)
   library(SingleR)
   library(celldex)
   library(pheatmap)
@@ -34,8 +35,7 @@ Set the base dir:
 baseDir <- "~/intro_to_scrnaseq/"
 ```
 
-We begin by loading our integrated samples.
-
+We begin by loading a pre-processed version of our integrated, clustered samples from the `data` folder.
 ```R
 integ_seurat = readRDS(file.path(baseDir, "data/clustered_seurat.rds"))
 ```
@@ -53,8 +53,8 @@ Idents(object = integ_seurat) <- "sample"
 DimPlot(integ_seurat)
 ```
 ![](images/integrated_sample.png)
-## Correlation Method (SingleR) 
-We'll use the [SingleR](https://github.com/LTLA/SingleR) tool with a reference database of expression profiles of known cell types in order to identify our cells and clusters. As mentioned in the lecture, this method measures the correlation of overall gene expression between cells in a reference database with cells in the query dataset in order to label cells  
+## SingleR Correlation Method 
+We'll use the [SingleR](https://github.com/LTLA/SingleR) tool along with a reference database of expression profiles of known cell types in order to identify our cells and clusters. As mentioned in the lecture, this method measures the correlation of overall gene expression between cells in a reference database with cells in the query dataset in order to label cells  
 
 To start, we'll use a general database of Human pure cell-types called the Human Primary Cell Type Atlas.  This dataset along with several others is available through the [celldex](https://rdrr.io/github/LTLA/celldex/man/HumanPrimaryCellAtlasData.html) R library. To load:
 ```R
