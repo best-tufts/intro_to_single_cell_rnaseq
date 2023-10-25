@@ -44,7 +44,7 @@ baseDir <- "~/intro_to_scrnaseq/"
 ## Read in `Seurat` object
 
 ```R
-filtered_seurat <- readRDS(file.path(baseDir, "data/merged_filtered_seurat.rds"))
+filtered_seurat <- readRDS(file.path(baseDir, "results/merged_filtered_seurat.rds"))
 ```
 
 ## Expression normalization
@@ -104,7 +104,7 @@ The purpose of dimensionality reduction to capture the majority of variability i
 
 ### Feature selection
 
-Our `Seurat` ojects is currently comprised of 14,065 features. Prior to running PCA, we will first identify 2,000 genes with high variance in our data. The justification of this is that highly variable genes should capture differences in expression across cell populations. Moreover, is makes calculation of our principal components less computationally expensive. We can perform feature selection using the `FindVariableFeatures()` `Seurat` function.
+Our `Seurat` objects is currently comprised of 14,065 features. Prior to running PCA, we will first identify 2,000 genes with high variance in our data. The justification of this is that highly variable genes should capture differences in expression across cell populations. Moreover, is makes calculation of our principal components less computationally expensive. We can perform feature selection using the `FindVariableFeatures()` `Seurat` function.
 
 ```R
 norm_seurat <- FindVariableFeatures(norm_seurat, 
@@ -158,7 +158,10 @@ Now we can visualize our UMAP output side-by-side with our first two principal c
 ```R
 uPlot <- UMAPPlot(norm_seurat, group.by = "sample") +
   ggtitle("UMAP",
-          subtitle = "RNA Assay")
+          subtitle = "RNA Assay") +
+  theme(
+    legend.position = "bottom"
+  )
 
 plot_grid(pPlot, uPlot, nrow = 1)
 ```
@@ -171,12 +174,10 @@ In the [Hafemeister and Satija, 2019](https://genomebiology.biomedcentral.com/ar
 
 ![](images/satFig.png)
 
-The proposed solution was the use of **Pearson residuals for transformation**, as implemented in the `Seurat` `SCTransform()` function. With this approach:
+The proposed solution was the use of **Regularized Negative Binomial Regression**, as implemented in the `Seurat` `SCTransform()` function. This approach
 
-- Measurements are multiplied by a gene-specific weight
-- Each gene is weighted based on how much evidence there is that it is non-uniformly expressed across cells
-- More evidence == more of a weight; Genes that are expressed in only a small fraction of cells will be favored (useful for finding rare cell populations)
-- Not just a consideration of the expression level is, but also the distribution of expression
+- Does not assume fixed number of UMI counts per cell
+- Normalizes expression values based on their Pearson residuals from negative binomial regression of UMI counts of each gene against total UMI counts of each profile.
 
 In the next code chunk, we demonstrate usage of the `SCTransform()` function. **DO NOT RUN THIS.** `SCTransform()` is more computationally expensive and takes several minutes to run. Instead we will read in a a saved `norm_seurat` object, for which `SCTransform()` has been performed.
 
@@ -258,6 +259,13 @@ The data integration workflow from the `Seurat` package is carried out in four m
   - Mutual Nearest Neighbors (MMN)
 4. Projects the expression profiles of individual cells to be more similar to their counterparts across data sets, performed by `IntegrateData()`.
 
+#### Canonical Correlation Analysis (CCA)
+
+The implementation of CCA in `Seurat` is effectively very similar to PCA. Whereas with PCA we seek to capture the majority of variability in a single data set in in a few features, with CCA we seek to capture the majority of "shared" variability between data sets in fewer features. Thus after implementing CCA we should obtain a set of features with reduced sample-specific variability that should capture shared signal of cell types represented across samples.
+
+#### Mutual Nearest Neighbors (MNN)
+
+MNN comprises two main steps. First, for each profile we identify its "K" most similar cell profiles ("nearest neighbors") in the other data set based on their CCA features. Second, "Mutual nearest neighbors" are instances in which pairs of inter-data set cell profiles are complementary identified as nearest neighbors of one another. When we perform integration, the expression of each cell profile in one data set will be projected to be more similar to its MNN counterparts in the other data set.
 
 We begin by splitting our `Seurat` object into a `list` object of two `Seurat` objects for each sample, "ctrl" and "stim", with the `SplitObject()` `Seurat` function.
 
@@ -347,7 +355,31 @@ integ_seurat <- RunUMAP(integ_seurat, dims = seq(10))
 
 Finally, we will visualize our PCA and UMAP results calculated from our `integrated` assay side-by-side with those calculated from the `SCT` assay of the un-integrated data.
 
+```R
+## Plot integrated PCA results
+pPlotInt <- PCAPlot(integ_seurat, group.by = "sample") +
+  ggtitle("PCA",
+          subtitle = "Integrated Assay") +
+  theme(
+    legend.position = "bottom"
+  )
+
+## Plot integrated UMAP results
+uPlotInt <- UMAPPlot(integ_seurat, group.by = "sample") +
+  ggtitle("UMAP",
+          subtitle = "Integrated Assay") +
+  theme(
+    legend.position = "bottom"
+  )
+
+# Combine Plots
+plot_grid(pPlotSCT, pPlotInt, 
+          uPlotSCT, uPlotInt, nrow = 2)
+```
+
 ![](images/dimRed4.png)
 
 That's it! Now, we have a fully processed and integrated data set. In the next section we will go over procedures for clustering scRNAseq to facilitate cell population identification.
+
+You can now open "05_clustering.Rmd" to continue on the the next section.
 

@@ -73,7 +73,7 @@ ElbowPlot(integ_seurat, ndims = 50)
 
 ![](images/elbowPlot.png)
 
-A "squishy" part here, is where we decide the "elbow" is. Clearly, there is a leveling out after the first 7 PCs. However, we also see a drop after the 17th PC. Generally, it is advisable to heir on the side of more PCs, as choosing too few PCs we run the risk of lacking the resolution to identify rare cell types. Accordingly, we'll move on with 17 as our choice of PC dimension.
+A "squishy" part here, is where we decide the "elbow" is. Clearly, there is a leveling out after the first 7 PCs. However, we also see a drop after the 17th PC. Generally, it is advisable to err on the side of more PCs, as choosing too few PCs we run the risk of lacking the resolution to identify rare cell types. Accordingly, we'll move on with 17 as our choice of PC dimension.
 
 Next, we'll use a run UMAP to make an initial assessment as to whether our samples appear well integrated at 17 PCs.
 
@@ -98,8 +98,7 @@ It appears that at 17 PCs our data relatively homogeneous in terms of the mixtur
 
 ### Determine the K-nearest neighbor graph
 
-The `Seurat` clustering workflow is a "graph" based method, which means that it takes as input a graph in which nodes are individual cell profiles and edges are connections between cell profiles, based on some similarity measure. Thus, before clustering we will construct a K-nearest neighbor graph (KNN). "Near" refers to the similarity of cell profiles
-in our reduced 17 dimension data set. "K" refers to the number of the "nearest" neighbors to choose for each cell profile.
+The `Seurat` clustering workflow is a "graph" based method, which means that it takes as input a graph in which nodes are individual cell profiles and edges are connections between cell profiles, based on some similarity measure. Thus, before clustering we will construct a K-nearest neighbor graph (KNN). "Near" refers to the similarity of cell profiles in our reduced 17 dimension data set. "K" refers to the number of the "nearest" neighbors to choose for each cell profile.
 
 In `Seurat`, KNN is performed using the `FindNeighbors()` function. If you look at the documentation you will see that there are many different parameters you can set for this process. For example, K is set to 20, with the argument `k.param`. In practice, researchers generally leave the defaults alone, so we won't get into the weeds about optimizing this step.
 
@@ -110,7 +109,7 @@ integ_seurat <- FindNeighbors(object = integ_seurat,
 
 ### Perform clustering with the Louvain algorithm
 
-By default, `Seurat` performs clustering on the KNN graph, using the Louvain algorithm. The Louvain algorithm works by recursively merging the most similar cell profiles in clusters, based on an optimization metric, called "modularity". The algorithm will stop after a certain modularity value has been reached, yeilding the final cluster estimates. 
+By default, `Seurat` performs clustering on the KNN graph, using the Louvain algorithm. The Louvain algorithm works by recursively merging the most similar cell profiles in clusters, based on an optimization metric, called "modularity". The algorithm will stop after a certain modularity value has been reached, yielding the final cluster estimates. 
 
 In `Seurat` the Louvain algorithm is performed by the `FindClusters()` function. Again, there are knobs we can turn in this process, particularly the `resolution` parameter, which controls the stopping value. This is set to 0.8, by default, and lower values will result in earlier stoppage, i.e. fewer clusters, and the opposition for higher values. here, we can take a heuristical approach by clustering under several resolution parameters, and then view our results in lower dimension with UMAP. Again, this is a "squishy" process, and prior knowledge about the general types of cells we expect in our data is very helpful.
 
@@ -156,6 +155,10 @@ Here, we can see that at resolution = 0.4. We appear to capture clusters of cell
 
 ### Visualize distributions of QC variables in clusters
 
+Following clustering it's good practice to inspect the distribution of different quality control variables across each of our clusters, as they can indicate instances in which clusters formed from non-biologically informative variability in our data. For example, we could find specific clusters characterized by generally high mitochondrial content, indicating that these may be of "low-quality" dying cells induced by sample preparation. Moreover, clusters with anomalously high counted genes could indicate the presence of "doublets", which are instances of multiple cells sequenced as a single profile.
+
+We do this below using the `VlnPlot()` `Seurat` function.
+
 ```R
 VlnPlot(integ_seurat, 
         group.by = "integrated_snn_res.0.4", 
@@ -167,13 +170,22 @@ VlnPlot(integ_seurat,
 
 ### Check cell cluster assignments accross samples
 
+Finally, we'll check the distribution of profiles originating from each sample in our clusters. This will inform whether our cluster assignments generally represented between samples, and whether specific clusters appear over-represented by either sample. If the former is false, we can generally assume that our integration procedure was ineffective at capturing shared sources of variability across data sets. However, if we observe a few specific cell clusters that are specific to a single sample, it could be due to such a technical artifact or biologically meaningful differences in abundance of specific cell populations between samples.
+
 ```R
 table(integ_seurat[[c("integrated_snn_res.0.4", "sample")]])
 ```
 ![](images/clVsamp.png)
 
+```R
+prop.table(table(integ_seurat[[c("integrated_snn_res.0.4", "sample")]]), margin = 2)
+```
+![](images/propTab.png)
+
 ## Save seurat object
 
+That's it! We not have our fully clustered `Seurat` object. We'll go ahead and save it for the next workshop, which will cover cell type identification and differential expression analyses.
+
 ```R
-saveRDS(integ_seurat, file.path(baseDir, "data/clustered_seurat.rds"))
+saveRDS(integ_seurat, file.path(baseDir, "results/clustered_seurat.rds"))
 ```

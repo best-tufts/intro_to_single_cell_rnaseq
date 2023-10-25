@@ -38,7 +38,7 @@ baseDir <- "~/intro_to_scrnaseq/"
 ## Read in combined and formatted PBMC `Seurat` object
 
 ```R
-merged_seurat <- readRDS(file.path(baseDir, "data/merged_seurat.rds"))
+merged_seurat <- readRDS(file.path(baseDir, "results/merged_seurat.rds"))
 ```
 
 ## Quality Control Filtering
@@ -211,7 +211,7 @@ keep_genes <- rowSums(nonzero) >= 10
 table(keep_genes)
 ```
 
-![](images/failPass.png)
+![](images/keepGenes.png)
 
 ### Subset filtered seurat object
 
@@ -221,8 +221,10 @@ filtered_seurat <- filtered_seurat[keep_genes,]
 
 ## Save seurat object
 
-That's it! We not have a cell profile- and gene-wise QC'd `Seurat` object. In the following workshops we will move on to the procedures for yielding cluster estimates of our cell populations.
+That's it! We now have a cell profile- and gene-wise QC'd `Seurat` object. In the following workshops we will move on to the procedures for yielding cluster estimates of our cell populations.
 
 ```R
-saveRDS(filtered_seurat, file.path(baseDir, "data/filtered_seurat"))
+saveRDS(filtered_seurat, file.path(baseDir, "results/merged_filtered_seurat.rds"))
 ```
+
+You can now open "04_integration.Rmd" to continue on the the next section.
