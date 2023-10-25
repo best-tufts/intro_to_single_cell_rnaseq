@@ -3,7 +3,7 @@ title: "Cell type identification"
 ---
 
 # Cell-type Identification [DRAFT]
-In this section, we'll demonstrate two automated methods to label cells in our dataset using reference datasets with known cell labels. More information on these methods is presented in [Lecture Part II)(slides/day2_temp.pdf).
+In this section, we'll demonstrate two automated methods to label cells in our dataset using reference datasets with known cell labels. More information on these methods is presented in [Lecture Part II](slides/day2_temp.pdf).
 
 - [SingleR](https://bioconductor.org/packages/devel/bioc/vignettes/SingleR/inst/doc/SingleR.html) method, which uses correlation of gene expression. This method can use both single-cell and bulk RNAseq reference datasets. 
 - [Seurat Integration Mapping](https://satijalab.org/seurat/articles/integration_mapping.html) which applies integration between a labeled, reference single-cell RNAseq dataset and our query dataset
@@ -230,7 +230,8 @@ pheatmap(tab)
 ```
 ![](images/pred_cell_heatmap.png)
 
-??? question "Are the dominant cell-level labels the same as the cluster-level labels? Add a row annotation of the cluster-level labels in order to compare visually". 
+??? question "Are the dominant cell-level labels the same as the cluster-level labels? 
+ - Add a row annotation of the cluster-level labels in order to compare visually". 
 
 Some clusters appear to have a mix of cells, which may indicate that they contain a type of cell not in our reference database. This is expected since we've used a very general database. Next we'll use a single-cell RNAseq dataset that we expect will have a better match to our data.
 
@@ -294,7 +295,7 @@ pheatmap(tab)
 
 ![](images/integrate_heatmap.png)
 
-Cluster 11 is not predominantly Dendritic Cells. 
+Cluster 11 cells are labeled predominantly Dendritic Cells. 
 
 Finally, we save the labeled object:
 ```R
