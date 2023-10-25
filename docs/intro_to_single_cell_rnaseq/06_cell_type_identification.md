@@ -3,9 +3,9 @@ title: "Cell type identification"
 ---
 
 # Cell-type Identification [DRAFT]
-In this section, we'll demonstrate two automated methods to label cells in our dataset using reference datasets with known cell labels.
+In this section, we'll demonstrate two automated methods to label cells in our dataset using reference datasets with known cell labels. More information on these methods is presented in [Lecture Part II)(slides/day2_temp.pdf).
 
-- [SingleR](https://bioconductor.org/packages/devel/bioc/vignettes/SingleR/inst/doc/SingleR.html) method, which uses correlation of gene expression. This method can use both single cell and bulk RNAseq reference datasets
+- [SingleR](https://bioconductor.org/packages/devel/bioc/vignettes/SingleR/inst/doc/SingleR.html) method, which uses correlation of gene expression. This method can use both single-cell and bulk RNAseq reference datasets
 - [Seurat Integration Mapping](https://satijalab.org/seurat/articles/integration_mapping.html) which applies integration between a labeled, reference single-cell RNAseq dataset and our query dataset
 
 To start, we set our library path on the HPC cluster:
@@ -21,8 +21,8 @@ We require three new packages:
 
 ```R
 suppressPackageStartupMessages({
-  library(tidyverse)
   library(Seurat)
+  library(tidyverse)
   library(cowplot)
   library(SingleR)
   library(celldex)
@@ -40,58 +40,58 @@ We begin by loading a pre-processed version of our integrated, clustered samples
 integ_seurat = readRDS(file.path(baseDir, "data/clustered_seurat.rds"))
 ```
 
-Set our identities to be the clusters found at the resolution 0.4 and plot UMAP: 
+When we left off, we had integrated our unstimulated (`ctrl`) and interferon beta stimulated (`stim`) PBMC samples and clustered the resulting dataset at resolution 0.4. We can visualize the cells both using either cluster or sample labels:
 ```R
 Idents(object = integ_seurat) <- "integrated_snn_res.0.4"
-DimPlot(integ_seurat, label=T)
-```
-![](images/integrated_cluster.png)
+p1 <- DimPlot(integ_seurat, label=T)
 
-Set our identities to be the sample type and plot UMAP:
-```R
 Idents(object = integ_seurat) <- "sample"
-DimPlot(integ_seurat)
-```
-![](images/integrated_sample.png)
-## SingleR Correlation Method 
-We'll use the [SingleR](https://github.com/LTLA/SingleR) tool along with a reference database of expression profiles of known cell types in order to identify our cells and clusters. As mentioned in the lecture, this method measures the correlation of overall gene expression between cells in a reference database with cells in the query dataset in order to label cells  
+p2 <- DimPlot(integ_seurat)
 
-To start, we'll use a general database of Human pure cell-types called the Human Primary Cell Type Atlas.  This dataset along with several others is available through the [celldex](https://rdrr.io/github/LTLA/celldex/man/HumanPrimaryCellAtlasData.html) R library. To load:
+plot_grid(p1, p2)
+```
+![](images/cluster_ident_grid_umap.png)
+
+
+## SingleR Correlation Method 
+First, we'll use [SingleR](https://github.com/LTLA/SingleR) along with a reference database of expression profiles of known cell types in order to identify our cells and clusters. As mentioned in the lecture, this method measures the correlation of overall gene expression between cells in a reference database with cells in the query dataset in order to label cells.
+
+To start, we'll use a database of bulk RNAseq profiles of Human pure cell-types called the Human Primary Cell Type Atlas.  This dataset along with several others is available through the [celldex](https://rdrr.io/github/LTLA/celldex/man/HumanPrimaryCellAtlasData.html) R library. To load, type the following, and type `yes` when prompted to create the `ExperimentHub` directory in a hidden `.cache` directory in your home folder.
 ```R
 hpca = HumanPrimaryCellAtlasData()
 ```
+The HPCA object has a data type called `Summarized Experiment` which allows one to store numeric data matrices in `assays` along with a data.frame providing annotation columns for sample in the data. 
 
-The HPCA object is of the data type called a `Summarized Experiment` which allows one to store count data matrices in assays along with metadata which annotate each cell/sample in the count data.
+![](images/hpca_graphic.png)
 
+We can access the sample annotations in the `@colData` slot, which show the sample cell-types. We can access the log-transformed expression data in the `@assay` slot.
 ```R
-head(hpca)
+head(hpca@colData)
+head(hpca@assays@data$logcounts)
 ```
-![](images/head_hpca.png)
 
-Well use in particular the label.main column of the metadata, which has the following cell-types:
-
+Well use the coarse-grained cell-type labels, `label.main`, column of the metadata, which has the following cell-types:
 ```R
 unique(hpca$label.main)
 ```
 ![](images/unique_hpca.png)
 
-Our data to be labeled is input into SingleR as a normalized count matrix, which we can extract from the `RNA` assay our `integ_seurat` object:
+The data to be labeled is input into SingleR as a log-transformed, normalized count matrix, which we can extract from the `RNA` assay our `integ_seurat` object:
 ```R
 query_counts = integ_seurat@assays$RNA@data
 ```
 
-SingleR can be run both on the cluster level and the individual cell level. For cluster-level annotation, the average expression profile of each cluster is used and a single label is generated. This is much faster to run, so we'll start here.
+`SingleR` can be run both on the cluster level and the individual cell level. For cluster-level annotation, the average expression profile of each cluster is used and a single label is generated. This is much faster to run, since we have many fewer clusters than cells, so we'll start here.
 
 ```R
 query_clusters = integ_seurat@meta.data$integrated_snn_res.0.4
 ```
 
-The following command runs SingleR on the cluster level, which should take only a few seconds. 
+The following command runs SingleR on the cluster level, without pruning, which should take only a few seconds.
 ```R
 pred_cluster <- SingleR(test = query_counts,
-                        ref = hpca,
-                        assay.type.test="logcounts",
                         clusters = query_clusters,
+                        ref = hpca,
                         labels = hpca$label.main, 
                         prune=F)
 ```
@@ -106,7 +106,7 @@ We can view the results, which contain a score for every cell type plus the fina
 view(pred_cluster)
 ```
 
-Select the score data to plot as a heatmap and the `label` column to annotate:
+Select the columns that start with `score` to plot as a heatmap and the `label` column to annotate the heatmap:
 ```R
 scores = data.frame(pred_cluster) %>%
   dplyr::select(starts_with("scores")) 
@@ -115,37 +115,40 @@ labels = data.frame(pred_cluster) %>%
   dplyr::select("labels")
 ```
 
-The scores can be plotted as a heatmap:
+The scores and chosen labels can be plotted using `pheatmap`:
 ```R
 pheatmap(scores,
          annotation_row = labels) 
 ```
 ![](images/pred_cluster_pheatmap.png)
 
-Now, make a named list with new names:
+Four cell-types were found in our data: B_cell, Monocyte, NK_cell and T_cell. However, some clusters like 10, 11, 12, do not appear to have a good match for any reference cell type.  
+
+Let's add the labels make a named list with new names:
 ```R
 new_names = pred_cluster$labels
 names(new_names) = rownames(pred_cluster)
 new_names
 ```
+![](images/cluster_label.png)
 
-Set the identities to the clusters found at resolution 0.4, rename the clusters, and add the names to the seurat metadata:
+Set the identities to the clusters found at resolution 0.4, rename the identities, and add the names to the Seurat metadata:
 ```R
 Idents(object = integ_seurat) <- "integrated_snn_res.0.4"
 integ_seurat = RenameIdents(integ_seurat, 
                                  new_names)
-integ_seurat$labels = Idents(integ_seurat)
+integ_seurat$singler_cluster_labels = Idents(integ_seurat)
 ```
 
-Let's look at the labeled clusters:
+Plot the labeled clusters:
 ```R
-Idents(integ_seurat) = "labels"
+Idents(integ_seurat) = "singler_cluster_labels"
 DimPlot(integ_seurat, 
         label=T)
 ```
 ![](images/pred_cluster_label.png)
 
-Running on the individual cell level will take longer, so we'll run it as a batch job. To do this, navigate to our scripts directory and open `singler_cell.R`. This file contains the key steps above, but eliminates the `labels` argument from the SingleR command.
+Running `SingleR` on the cell level uses the same method but eliminates the `clusters` argument from the command and enables the default pruning process. It will take ~20 minutes to run, so we'll run it as a batch job and not interactively (do not run the below code in Rstudio).
 
 ```R
 # DO NOT RUN!
@@ -155,65 +158,77 @@ pred_cell <- SingleR(test = query_counts,
                       labels = hpca$label.main)
 
 ```
+Running R scripts as batch job is convenient and does not require the Rstudio session to remain connected while the job runs. To navigate to our scripts directory and open `06_singler_cell.R`. This file contains the key steps above but runs `SingleR` on the cell level.
 
-To run it, we use the `run_singler_cell.sh` script in the `scripts` directory. Click to open the file:
+To run it, we use an `SBATCH` file that is interpreted by the cluster job scheduler called [slurm](https://tufts.app.box.com/file/780443358198?v=Pax-User-Guide). Open the file `06_run_singler_cell.sh` in the `scripts` directory. 
+
+The file contains a header which specifies the resources that the job will need so that an appropriate compute node can be allocated. Header lines start with `#SBATCH`. The body of the script specifies the code to be run once the job is started on a compute node. 
 
 ```bash
-#!/bin/bash
-#SBATCH -J run_singler
-#SBATCH --time=2:00:00 
-#SBATCH -n 1
-#SBATCH -N 1
-#SBATCH --mem=10Gb
-#SBATCH --output=%j.out 
-#SBATCH --error=%j.err 
+#!/bin/bash                       # Use the bash shell interpreter
+#SBATCH -J run_singler            # Give the job a name
+#SBATCH --time=2:00:00            # Request 2 hours
+#SBATCH -n 1                      # Request 1 core
+#SBATCH -N 1                      # Request 1 node
+#SBATCH --mem=10Gb                # Request 10 Gb
+#SBATCH --output=%j.out           # Write the job output to a file prefixed by the job number
+#SBATCH --error=%j.err            # Write the job error to a file prefixed by the job number
  
-module purge
-module load R/4.0.0
+module purge                      # Remove loaded modules
+module load R/4.0.0               # Load R module
 
-Rscript --no-save singler_cell.R
+Rscript --no-save 06_singler_cell.R  # Run the script 
 ```
-
-This contains an sbatch header which gives instructions to the HPC job scheduler, 'slurm', about resources that the job will need. 
 
 To run the script:
-- Click on `Terminal` next to `Console` in the bottom portion of the Rstudio application
-- Change to our `scripts` directory by typing `cd intro_to_scrnaseq/scripts`
-- Type `sbatch run_singler_cell.sh singler_cell.R` and press enter. 
-- Your job will be given a number by slurm and placed in the queue.
+- Click on `Terminal` next to `Console` in the bottom portion of the `Rstudio` application
+- Change to our `scripts` directory by typing `cd ~/intro_to_scrnaseq/scripts`
+- Type `sbatch 06_run_singler_cell.sh` and press enter. 
+- Your job will be given a number by `slurm` and placed in the queue.
 - To check the status of your job, type `squeue -u tufts-username` and you will see your job status. 
 
-Let's load the prepossessed results in the meantime:
+??? question "Is your job submitted successfully?"
+    - Yes (put up a green check mark in zoom)
+    - No (raise hand in zoom)
+    
+In the meantime, let's load the pre-processed cell-level labels.
 ```R
 pred_cell = readRDS(file.path(baseDir,"data/singler_hpca_cell.rds"))
+head(pred_cell)
 ```
+![](images/head_pred_cell.png)
 
-Take a look at the cell level labels which should be done running by now. We'll this time, we'll add the `pruned labeles` to the seurat object metadata. Note we add it directly to the metadata because it has one entry for each cell.
+The cell-level labels have one row for every cell. The table contains scores for each reference label as well as both a `labels` and a `pruned.labels` column. We can directly add the `pruned.labels` to the Seurat object metadata using the `AddMetaData` function. 
+
 ```R
 integ_seurat  = AddMetaData(integ_seurat,
                                  pred_cell$pruned.labels,
-                                 "hpca.labels")
+                                 "singler_cell_labels")
 ```
 
 Assign the idents and make a plot:
 ```R
-Idents(integ_seurat) = "hpca.labels"
+Idents(integ_seurat) = "singler_cell_labels"
 DimPlot(integ_seurat, 
         label=T)
 ```
 ![](images/pred_cell_label.png)
 
-We see the picture is more complex and clusters containing a mix of cell labels. We can view the breakdown per cluster as a heatmap:
+Some clusters contain a mix of cell labels. We can view the breakdown of cell-type labels per cluster using pheatmap:
 ```R
 tab <- table(cluster=integ_seurat$integrated_snn_res.0.4,
              label=pred_cell$labels)
-pheatmap(log10(tab+10)) 
-```
 
+# divide by the total number of cells in each cluster
+tab <- tab/rowSums(tab)
+
+pheatmap(tab) 
+```
 ![](images/pred_cell_heatmap.png)
 
-Some clusters appear to have a mix of cells, which may indicate that they contain a type of cell not in our reference database. This is expected since we've used a very general database. Next we'll use a single-cell RNAseq dataset that contains a perfect match and see how the labeling changes.
+??? questions "Are the dominant cell-level labels the same as the cluster-level labels? Add a row annotation of the cluster-level labels in order to compare visually". 
 
+Some clusters appear to have a mix of cells, which may indicate that they contain a type of cell not in our reference database. This is expected since we've used a very general database. Next we'll use a single-cell RNAseq dataset that we expect will have a perfect match to our data.
 
 ## Integration Mapping Method (Seurat)
 
