@@ -5,7 +5,7 @@ title: "Cell type identification"
 # Cell-type Identification [DRAFT]
 In this section, we'll demonstrate two automated methods to label cells in our dataset using reference datasets with known cell labels. More information on these methods is presented in [Lecture Part II)(slides/day2_temp.pdf).
 
-- [SingleR](https://bioconductor.org/packages/devel/bioc/vignettes/SingleR/inst/doc/SingleR.html) method, which uses correlation of gene expression. This method can use both single-cell and bulk RNAseq reference datasets
+- [SingleR](https://bioconductor.org/packages/devel/bioc/vignettes/SingleR/inst/doc/SingleR.html) method, which uses correlation of gene expression. This method can use both single-cell and bulk RNAseq reference datasets. 
 - [Seurat Integration Mapping](https://satijalab.org/seurat/articles/integration_mapping.html) which applies integration between a labeled, reference single-cell RNAseq dataset and our query dataset
 
 To start, we set our library path on the HPC cluster:
@@ -56,7 +56,11 @@ plot_grid(p1, p2)
 ## SingleR Correlation Method 
 First, we'll use [SingleR](https://github.com/LTLA/SingleR) along with a reference database of expression profiles of known cell types in order to identify our cells and clusters. As mentioned in the lecture, this method measures the correlation of overall gene expression between cells in a reference database with cells in the query dataset in order to label cells.
 
-To start, we'll use a database of bulk RNAseq profiles of Human pure cell-types called the Human Primary Cell Type Atlas.  This dataset along with several others is available through the [celldex](https://rdrr.io/github/LTLA/celldex/man/HumanPrimaryCellAtlasData.html) R library. To load, type the following, and type `yes` when prompted to create the `ExperimentHub` directory in a hidden `.cache` directory in your home folder.
+To start, we'll use a database of bulk RNAseq profiles of Human pure cell-types called the Human Primary Cell Type Atlas.  This dataset along with several others is available through the [celldex](https://rdrr.io/github/LTLA/celldex/man/HumanPrimaryCellAtlasData.html) R library. A database like this is useful as a starting point to determine which broad cell types your sample has, either because there is no existing single-cell reference for your sample-type, or because you want to make sure that your sample-type contains the expected cell types before using a more specific single-cell reference. 
+
+
+
+To load, type the following, and type `yes` when prompted to create the `ExperimentHub` directory in a hidden `.cache` directory in your home folder.
 ```R
 hpca = HumanPrimaryCellAtlasData()
 ```
@@ -203,7 +207,7 @@ The cell-level labels have one row for every cell. The table contains scores for
 ```R
 integ_seurat  = AddMetaData(integ_seurat,
                                  pred_cell$pruned.labels,
-                                 "singler_cell_labels")
+                                 col.name = "singler_cell_labels")
 ```
 
 Assign the idents and make a plot:
@@ -226,19 +230,18 @@ pheatmap(tab)
 ```
 ![](images/pred_cell_heatmap.png)
 
-??? questions "Are the dominant cell-level labels the same as the cluster-level labels? Add a row annotation of the cluster-level labels in order to compare visually". 
+??? question "Are the dominant cell-level labels the same as the cluster-level labels? Add a row annotation of the cluster-level labels in order to compare visually". 
 
-Some clusters appear to have a mix of cells, which may indicate that they contain a type of cell not in our reference database. This is expected since we've used a very general database. Next we'll use a single-cell RNAseq dataset that we expect will have a perfect match to our data.
+Some clusters appear to have a mix of cells, which may indicate that they contain a type of cell not in our reference database. This is expected since we've used a very general database. Next we'll use a single-cell RNAseq dataset that we expect will have a better match to our data.
 
-## Integration Mapping Method (Seurat)
+## Seurat Integration Mapping
 
-These are PBMC from another source, processed through the Seurat pipeline as our data. Let's load and view the metadata:
+The next reference dataset is a PBMC dataset [available from 10X Genomics](https://cf.10xgenomics.com/samples/cell/pbmc3k/pbmc3k_filtered_gene_bc_matrices.tar.gz) which has been pre-processed through the Seurat pipeline. Load the data:
 ```R
 pbmc = readRDS(file.path(baseDir, "data/pbmc_reference.rds"))
-head(pbmc)
 ```
 
-Set the identities and plot
+The cell-type label is in the `seurat_annotation` metadata column. Set the cell identities to this column and plot:
 ```R
 Idents(pbmc) = "seurat_annotations"
 DimPlot(pbmc, label=T)
@@ -246,32 +249,34 @@ DimPlot(pbmc, label=T)
 
 ![](images/pbmc_reference_label.png)
 
-Find the transfer anchors:
+We see there are more specific T-cell and Monocyte cell subset labels. 
+
+The first step is to find the transfer anchors using the function `FindTransferAnchors` with the following code. This step similar to the `FindIntegrationAnchors` function in the integration step, except the PCA is performed only on the reference dataset and the query dataset is projected onto the reference learned PCA structure (`reduction = "pcaproject"` and `project.query = FALSE` by default). This allows us to potentially use a reference dataset with many more cell types than our query dataset. 
+
 ```R
 anchors <- FindTransferAnchors(reference = pbmc, 
-                                   query = integ_seurat,
-                                   reduction = "pcaproject",
-                                   reference.reduction = "pca",
-                                   dims = 1:30)
+                                   query = integ_seurat)
 ```
 
-Make cell type predictions by transfering the anchors:
+Next, we'll transfer the reference cell-type labels to the query using `TransferData`. This step uses the proximity of each query cells to each anchors in order to label query cells.
 ```R
 predictions<- TransferData(anchorset = anchors, 
-                                refdata = pbmc$seurat_annotations,
-                                dims = 1:30)
+                                refdata = pbmc$seurat_annotations)
+                                
 ```
 
 Add the predicted id to the metadata:
 ```R
 integ_seurat <- AddMetaData(integ_seurat, 
-                                 metadata = predictions)
+                                 metadata = predictions$predicted.id,
+                                 col.name = "seurat_annotations")
 ```
 
-Set the Idents and plot:
+Set the identities to our newly added column and plot:
 ```R
-Idents(integ_seurat) = "predicted.id"
-DimPlot(integ_seurat, label=T )
+Idents(integ_seurat) = "seurat_annotations"
+DimPlot(integ_seurat, 
+            label=T )
 ```
 
 ![](images/integrate_label.png)
@@ -279,13 +284,21 @@ DimPlot(integ_seurat, label=T )
 We can view the breakdown per cluster as a heatmap:
 ```R
 tab <- table(cluster=integ_seurat$integrated_snn_res.0.4,
-             label=integ_seurat$predicted.id)
-pheatmap(log10(tab+10)) 
+             label=integ_seurat$seurat_annotations)
+
+# divide by the total number of cells in each cluster
+tab <- tab/rowSums(tab)
+
+pheatmap(tab) 
 ```
 
 ![](images/integrate_heatmap.png)
 
-Finally, we have to save the labeled object:
+Cluster 11 is not predominantly Dendritic Cells. 
+
+Finally, we save the labeled object:
 ```R
 saveRDS(integ_seurat, file.path(baseDir,"results/labeled_seurat.rds"))
 ```
+
+In the next section we'll look at a type of Differentially Expressed Gene known as a Marker Gene, which can help to confirm cell-type labels by confirming expression of known cell-type specific genes.
