@@ -2,7 +2,7 @@
 title: "Cell type identification"
 ---
 
-# Cell-type Identification [DRAFT]
+# Cell-type Identification 
 In this section, we'll demonstrate two automated methods to label cells in our dataset using reference datasets with known cell labels. More information on these methods is presented in [Lecture Part II](slides/day2_temp.pdf).
 
 - [SingleR](https://bioconductor.org/packages/devel/bioc/vignettes/SingleR/inst/doc/SingleR.html) method, which uses correlation of gene expression. This method can use both single-cell and bulk RNAseq reference datasets. 
@@ -154,7 +154,7 @@ DimPlot(integ_seurat,
 
 Running `SingleR` on the cell level uses the same method but eliminates the `clusters` argument from the command and enables the default pruning process. It will take ~20 minutes to run, so we'll run it as a batch job and not interactively (do not run the below code in Rstudio).
 
-```R
+```{R,eval=FALSE}
 # DO NOT RUN!
 pred_cell <- SingleR(test = query_counts,
                       ref = hpca,
