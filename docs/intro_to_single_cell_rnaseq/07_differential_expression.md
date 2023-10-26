@@ -14,10 +14,8 @@ LIB='/cluster/tufts/hpc/tools/R/4.0.0/'
 ```
 
 We require new packages:
-1) openxlsx
-2) metap
-3) clusterProfiler
-4) org.Hs.eg.db
+- [openxlsx](https://cran.r-project.org/web/packages/openxlsx/index.html): Read/write Excel .xlsx files
+
 
 ```R
 suppressPackageStartupMessages({
@@ -25,7 +23,6 @@ suppressPackageStartupMessages({
   library(cowplot)
   library(Seurat)
   library(openxlsx)
-  library(metap)
   library(clusterProfiler)
   library(org.Hs.eg.db)
 })
@@ -85,6 +82,7 @@ We need to reintegrate, here we load pre-processed integrated t-cell subset:
 tcell_int = readRDS(file.path(baseDir, "data/integrated_tcell.rds"))
 ```
 
+Select a lower resolution
 ```R
 Idents(object = tcell_int) <- "integrated_snn_res.0.1"
 DefaultAssay(tcell_int) = "RNA"
@@ -154,8 +152,12 @@ markers_top100 = markers_filter %>%
   group_by(cluster) %>%
   slice_max(order_by=ctrl_avg_log2FC, n=100)
 ```
+## Optional section GO Functional Enrichment:
+Load additional packages
+- clusterProfiler
+- org.Hs.eg.db
+  
 
-GO Functional Enrichment:
 ```R
 ck <- compareCluster(geneCluster = gene ~ cluster,
                      data = markers_top100,
