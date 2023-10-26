@@ -15,7 +15,7 @@ In this workshop we will introduce single-cell RNA sequencing and the bioinform
 
 | Time |  Topic  | Instructor |
 |-----------|----------|--------|
-| 02:00 - 03:00 | [Lecture: Quality Control, Integration, Clustering](slides/day1_temp.pdf) | [Dr. Eric Reed](https://disc.tufts.edu/eric-reed) |
+| 02:00 - 03:00 | [Lecture: Quality Control, Integration, Clustering](slides/day1.pdf) | [Dr. Eric Reed](https://disc.tufts.edu/eric-reed) |
 | 03:00 - 04:00 | Hands on Workshop |  |
 
 #### Day 2
