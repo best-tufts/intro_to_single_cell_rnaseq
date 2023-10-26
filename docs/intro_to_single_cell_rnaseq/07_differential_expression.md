@@ -3,9 +3,13 @@ title: "Differential Expression"
 ---
 
 # Differential Expression [DRAFT]
+
+In this section we will be looking at a complementary method to understanding the biological meaning of our clusters.
+
 Differential Expression in scRNAseq has multiple meanings. In this section we will focus on two types:
 - Genes that are overexpressed in on cell-type compared to all other cell-types, known as "Marker Genes"
 - Genes that are statistically different between groups of cells with different phenotypes or conditions, known as "Differentially Expressed Genes"
+
 
 To start, we set our library path:
 ```R
@@ -13,7 +17,7 @@ LIB='/cluster/tufts/hpc/tools/R/4.0.0/'
 .libPaths(c("",LIB))
 ```
 
-We require new packages:
+We require one new package:
 - [openxlsx](https://cran.r-project.org/web/packages/openxlsx/index.html): Read/write Excel .xlsx files
 
 
@@ -23,8 +27,6 @@ suppressPackageStartupMessages({
   library(cowplot)
   library(Seurat)
   library(openxlsx)
-  library(clusterProfiler)
-  library(org.Hs.eg.db)
 })
 ```
 
@@ -33,153 +35,126 @@ Set the base dir:
 baseDir <- "~/intro_to_scrnaseq/"
 ```
 
-Load data and select resolution
+We begin by loading the integrated, clustered, and labeled cells from `results`, created in the last section. One may alternatively load the integrated, clustered object from `data`.
+
 ```R
-integ_seurat = readRDS(file.path(baseDir, "data/clustered_seurat.rds"))
+integ_seurat = readRDS(file.path(baseDir, "results/labeled_seurat.rds"))
 ```
 
-Set our identities to be the clusters found at the resolution 0.4 and set the RNA assay to be the default assay:
-```R
+We again set identities to be the clusters found at the resolution 0.4 and set our default assay to be `RNA`:
+```R 
 Idents(object = integ_seurat) <- "integrated_snn_res.0.4"
 DefaultAssay(integ_seurat) = "RNA"
 ```
 
-Visualizations 
+Next, use a `DotPlot` to visualize expression of genes `CD8A` and `PYURF`. 
+```R
+DotPlot(integ_seurat, 
+         features = c("CD8A","PYURF"))
+```
+![](images/2_gene_dot.png)
+
+Notice that `CD8A` is more highly expressed in cluster 6 compared with other clusters and is therefore likely to be a marker gene for cluster 6. `PYURF` expression, on the other hand, is not cluster-specific. 
+
+Next, examine the expression of these two genes in our two conditions using `VlnPlot`.
 
 ```R
-feat1 <- FeaturePlot(integ_seurat, features=c("CD8A"), label=T)
 
 vln1 <- VlnPlot(integ_seurat, 
-        features=c("CD8A"),
-        split.by="sample",
+        features = "CD8A",
+        split.by = "sample",
         split.plot = TRUE, 
-        pt.size=0)
-
-feat2 <- FeaturePlot(integ_seurat, features=c("PYURF"), label=T)
-
+        pt.size = 0)
+    
 vln2 <- VlnPlot(integ_seurat, 
-        features=c("PYURF"),
-        split.by="sample",
+        features = "PYURF",
+        split.by = "sample",
         split.plot = TRUE, 
-        pt.size=0)
+        pt.size = 0)
 
-plot_grid(feat1, vln1,  feat2, vln2, ncol = 2)
+plot_grid(vln1, vln2, ncol = 2)
 
 ```
-![](images/vln_feat.png)
+![](images/2gene_violin.png)
 
-look more closely at t-cell subsets
+On the left we see that `CD8A` it is equally overexpressed in cluster 6 cells in the `ctr` and `stim` samples, while on the right we see that `PYURF` on the other hand seems to have condition-specific expression in several clusters, including cluster 6, and is likely differentially expressed by condition.
 
+
+## Marker Genes
+
+Next, use `FindConservedMarkers` to find the markers of cluster 6 that are overexpressed in both conditions:
 ```R
-tcell = subset(integ_seurat, idents = c(1,2,4,6,10))
-DefaultAssay(tcell) = "RNA"
-DimPlot(tcell)
-```
-![](images/tcell.png)
-We need to reintegrate, here we load pre-processed integrated t-cell subset:
+markers_6 = FindConservedMarkers(integ_seurat,
+                                         ident.1 = 6,
+                                         grouping.var = "sample",
+                                         only.pos = TRUE,
+                                         logfc.threshold = 0.25)
+markers_6$cluster = 6
+markers_6$gene = rownames(markers_6)
 
-```R
-tcell_int = readRDS(file.path(baseDir, "data/integrated_tcell.rds"))
-```
-
-Select a lower resolution
-```R
-Idents(object = tcell_int) <- "integrated_snn_res.0.1"
-DefaultAssay(tcell_int) = "RNA"
-DimPlot(tcell_int, label=T)
-```
-![](images/tcell_integrate.png)
-
-Let's calculate conserved markers:
-```R
-all_conserved_markers = data.frame()
-clusters = unique(tcell_int$integrated_snn_res.0.1)
-
-for(cl in clusters){
-  markers_conserved = FindConservedMarkers(tcell_int,
-                                           ident.1 = cl,
-                                           grouping.var = "orig.ident",
-                                           only.pos = TRUE,
-                                           logfc.threshold = 0.25)
-  
-  markers_conserved$cluster = cl
-  markers_conserved$gene= rownames(markers_conserved)
-  all_conserved_markers = rbind(all_conserved_markers, markers_conserved)
-}
-```
-
+write.xlsx(markers_6, 
+            file.path(baseDir,"results/conservedmarkers_6_res_0.4.xlsx"))                                         
+```  
+??? question "Can you write a for loop that runs `FindConservedMarkers` for all clusters and outputs a single table?" 
+    - Hint: add a column to keep track of which cluster was `ident.1` in each iteration.
+    
 View the marker table:
 ```R 
-view(all_conserved_markers)
+view(markers_6)
 ```
-![](images/tcell_marker_table.png)
+![](images/markers_6_table.png)
 
-Write markers:
+
+Find the markers that are significant at a p.adjust 0.05 level and select the top 3 by `stim_avg_log2FC`:
 ```R
-write.xlsx(all_conserved_markers, 
-            file.path(baseDir,"results/findconservedmarkers_tcell_res_0.1.xlsx"))
-```
-
-Filter the markers
-```R
-markers_filter = all_conserved_markers  %>%
-  dplyr::filter(max_pval<0.05)
-```
-
-Table of significant markers per cluster:
-```R
-table(markers_filter$cluster)
-```
-
-Let's find the top 3:
-```R
-markers_top3 = markers_filter %>%
-  group_by(cluster) %>%
-  slice_max(order_by=ctrl_avg_log2FC, n=3)
-
+markers_6_top5 = markers_6 %>%
+  dplyr::filter(max_pval<0.05) %>%
+  slice_max(order_by=stim_avg_log2FC, n=5)
 ```
 
 Plot:
 ```R
-DotPlot(tcell_int, features=unique(markers_top3$gene)) + 
+DotPlot(integ_seurat, features=markers_6_top5$gene) + 
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
 ```
 ![](images/tcell_marker_dotplot.png)
 
+
+## Optional: Gene Ontology Functional Enrichment:
+
 Find the top 100:
 ```R
-markers_top100 = markers_filter %>%
-  group_by(cluster) %>%
-  slice_max(order_by=ctrl_avg_log2FC, n=100)
+markers_6_top100 = markers_6 %>%
+  dplyr::filter(max_pval<0.05) %>%
+  slice_max(order_by=stim_avg_log2FC, n=100)
 ```
-## Optional section GO Functional Enrichment:
+
 Load additional packages
-- clusterProfiler
-- org.Hs.eg.db
-  
+- [clusterProfiler](https://bioconductor.org/packages/release/bioc/html/clusterProfiler.html): Library for functional enrichment of omics data
+- [org.Hs.eg.db](https://bioconductor.org/packages/release/data/annotation/html/org.Hs.eg.db.html): Bioconductor package providing genome wide annotation for Human
 
 ```R
-ck <- compareCluster(geneCluster = gene ~ cluster,
-                     data = markers_top100,
+library(clusterProfiler)
+library(org.Hs.eg.db)
+```
+
+Run the `enrichGO` function: 
+```R
+ego <- enrichGO(gene = markers_6_top100$gene,
                      OrgDb = org.Hs.eg.db,
                      keyType="SYMBOL",
-                     fun = "enrichGO",
-                     ont="BP",
-                     universe=rownames(tcell_int@assays$RNA@counts))
+                     ont = "BP",
+                     universe=rownames(integ_seurat@assays$RNA@counts))
 ```
 
-Plot:
+Plot a dot plot:
 ```R
-dotplot(ck, 
-        show=3,
-        font.size=6)
+dotplot(ego,
+        font.size=10)
 ```
 ![](images/cp_dotplot.png)
 
-Save:
-```R
-saveRDS(ck, 
-        file.path(baseDir,"results/go_tcell_max_pval_0.05_res_0.1.rds"))
-write.xlsx(ck, 
-           file.path(baseDir,"results/go_tcell_max_pval_0.05_res_0.1.xlsx"))
-```
+
+## Differentially Expressed Genes
+
+

@@ -263,19 +263,18 @@ Next, we'll transfer the reference cell-type labels to the query using `Transfer
 ```R
 predictions<- TransferData(anchorset = anchors, 
                                 refdata = pbmc$seurat_annotations)
-                                
 ```
 
 Add the predicted id to the metadata:
 ```R
 integ_seurat <- AddMetaData(integ_seurat, 
                                  metadata = predictions$predicted.id,
-                                 col.name = "seurat_annotations")
+                                 col.name = "seurat_labels")
 ```
 
 Set the identities to our newly added column and plot:
 ```R
-Idents(integ_seurat) = "seurat_annotations"
+Idents(integ_seurat) = "seurat_labels"
 DimPlot(integ_seurat, 
             label=T )
 ```
@@ -285,7 +284,7 @@ DimPlot(integ_seurat,
 We can view the breakdown per cluster as a heatmap:
 ```R
 tab <- table(cluster=integ_seurat$integrated_snn_res.0.4,
-             label=integ_seurat$seurat_annotations)
+             label=integ_seurat$seurat_labels)
 
 # divide by the total number of cells in each cluster
 tab <- tab/rowSums(tab)
