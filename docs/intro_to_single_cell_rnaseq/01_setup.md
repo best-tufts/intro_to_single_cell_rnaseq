@@ -43,7 +43,11 @@ file.copy(from="/cluster/tufts/bio/tools/training/intro_to_scrnaseq",to="~/", re
 To see that our folder was copied over, we'll refresh our file list in the lower right hand Rstudio pane by clicking the `refresh` arrow ![](images/refresh.png){width=5%, height=5%}. 
 
 To open our first workshop script:
+
 - Click on the `Files` tab in the lower right hand Rstudio pane
+
 - Click on the `intro_to_scrnaseq` directory
+
 - Click on the `scripts` folder
+
 - Click on the `02_formatting.Rmd` script
