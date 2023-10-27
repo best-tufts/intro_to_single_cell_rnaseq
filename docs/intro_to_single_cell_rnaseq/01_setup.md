@@ -20,7 +20,7 @@ Click on `Interactive Apps > RStudio Pax` and you will see a form to fill out to
 - `Amount of memory` : `16GB`
 - `R version` : `4.0.0`
 - `Reservation for class, training, workshop` : `Bioinformatics Workshops`
-    - **NOTE: This reservation will be available for registered participants only from Oct 26th - Nov 5th 2023, use `Default` in all other cases.**
+    - **NOTE: This reservation will be available for registered participants only on Oct 26th and Nov 2nd 2023, use `Default` in all other cases.**
 
 Click `Launch` and wait until your session is ready. Click `Connect To RStudio Server`, and a new tab will open with Rstudio. 
 
@@ -43,8 +43,8 @@ file.copy(from="/cluster/tufts/bio/tools/training/intro_to_scrnaseq",to="~/", re
 To see that our folder was copied over, we'll refresh our file list in the lower right hand Rstudio pane by clicking the `refresh` arrow ![](images/refresh.png){width=5%, height=5%}. 
 
 To open our first workshop script:  
-- Click on the `Files` tab in the lower right hand Rstudio pane
-- Click on the `intro_to_scrnaseq` directory
-- Click on the `scripts` folder
+- Click on the `Files` tab in the lower right hand Rstudio pane 
+- Click on the `intro_to_scrnaseq` directory 
+- Click on the `scripts` folder 
 - Click on the `02_formatting.Rmd` script
 
