@@ -131,7 +131,7 @@ Let's plot these:
 DotPlot(integ_seurat, features=markers_6_top5$gene) + 
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
 ```
-![](images/tcell_marker_dotplot.png)
+![](images/cluster_6_marker_dotplot.png)
 
             
 ??? question "Can you write a for loop that runs `FindConservedMarkers` for all clusters and outputs a single table?" 
@@ -140,14 +140,12 @@ DotPlot(integ_seurat, features=markers_6_top5$gene) +
   
 ## Differentially Expressed Genes
 
-We are also interested in gene expression changes between the conditions within each cluster. As mentioned in lecture, experiments designed to test differences between conditions should have ideally have multiple replicates of each condition and intra-individual variation should be taken into account. One solution is to use mixed-effects models [MAST](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-015-0844-5). 
+We are also interested in gene expression changes between the conditions within each cluster/cell-type. As mentioned in lecture, experiments designed to test differences between conditions should have ideally have multiple replicates of each condition and intra-individual variation should be taken into account. One solution is to use mixed-effects models [MAST](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-015-0844-5). 
 
 
-For our tutorial dataset, with only one replicate in each condition, we can't apply these these methods and so our `p-values` will suffere from pseudoreplication bias. Findings should be considered hypothesis generating. 
+For our tutorial dataset, with only one replicate in each condition, we can't apply these these methods and so our `p-values` will suffer from pseudoreplication bias. Findings should be considered hypothesis generating. 
 
-To demonstrate, we'll use `FindMarkers` on cluster 6 cells to find differences between `ctrl` and `stim`.
-
-First, select the cluster 6 cells in a new seurat object using `subset`:
+To demonstrate, we'll use `FindMarkers` on cluster 6 cells to find differences between `ctrl` and `stim`. First, select the cluster 6 cells in a new seurat object using `subset`:
 ```R
 cluster_6 = subset(integ_seurat, ident = 6) 
 ```
