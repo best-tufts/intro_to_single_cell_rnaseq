@@ -135,8 +135,21 @@ DotPlot(integ_seurat, features=markers_6_top5$gene) +
 
             
 ??? question "Can you write a for loop that runs `FindConservedMarkers` for all clusters and outputs a single table?" 
-    - Hint: add a column to keep track of which cluster was `ident.1` in each iteration.
-  
+    -Answer
+all_conserved_markers = data.frame()
+clusters = unique(tcell_int$integrated_snn_res.0.1)
+
+for(cl in clusters){
+  markers_conserved = FindConservedMarkers(tcell_int,
+                                           ident.1 = cl,
+                                           grouping.var = "orig.ident",
+                                           only.pos = TRUE,
+                                           logfc.threshold = 0.25)
+
+  markers_conserved$cluster = cl
+  markers_conserved$gene= rownames(markers_conserved)
+  all_conserved_markers = rbind(all_conserved_markers, markers_conserved)
+}
   
 ## Differentially Expressed Genes
 
@@ -145,7 +158,7 @@ We are also interested in gene expression changes between the conditions within 
 
 For our tutorial dataset, with only one replicate in each condition, we can't apply these these methods and so our `p-values` will suffer from pseudoreplication bias. Findings should be considered hypothesis generating. 
 
-To demonstrate, we'll use `FindMarkers` on cluster 6 cells to find differences between `ctrl` and `stim`. First, select the cluster 6 cells in a new seurat object using `subset`:
+To demonstrate, we'll use `FindMarkers` on cluster 6 cells to find differences between `ctrl` and `stim`. First, select the cluster 6 cells in a new Seurat object using `subset`:
 ```R
 cluster_6 = subset(integ_seurat, ident = 6) 
 ```
@@ -171,8 +184,7 @@ view(deg)
 ```
 ![](images/deg.png)
 
-Log2FC
-Again, select the top 5 to plot:
+Select the top 5 by `avg_log2FC`:
 
 ```R
 deg_top5 = deg %>%
@@ -181,18 +193,16 @@ deg_top5 = deg %>%
   rownames_to_column("gene")
 ```
   
-Make a plot:
+Use `DotPlot` to visualize expression in two condition groups:
 ```R
 DotPlot(cluster_6, features=deg_top5$gene) + 
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
 ```
-![](images/deg.png)
+![](images/deg_dot.png)
 
+## Gene Ontology Functional Enrichment (Optional):
 
-## Optional: Gene Ontology Functional Enrichment:
-
-The above functions give us lists of genes that help us to understand the behavior of cell types. Here we demonstrate the use of overrepresentation analysis together with the Gene Ontology database to understand the biological processes represented by the list of cluster 6 marker genes.
-
+The above functions give us lists of genes that help us to understand the behavior of cell types in our two conditions. Here we demonstrate the use of overrepresentation analysis together with the Gene Ontology database to understand the biological processes represented by the list of cluster 6 marker genes. Some details about overrepresentation analysis are available here.
 
 Here, we'll select the top 100 genes by `stim_avg_log2FC`. 
 ```R
@@ -219,11 +229,14 @@ ego <- enrichGO(gene = markers_6_top100$gene,
                      universe=rownames(integ_seurat@assays$RNA@counts))
 ```
 
-Plot a dot plot:
+Use `clusterProfiler::dotplot` to visualize the results:
 ```R
 dotplot(ego,
-        font.size=10)
+        font.size=10, 
+        show=10, 
+        by = "Count")
 ```
 ![](images/cp_dotplot.png)
 
 
+Similar to the `Seurat::DotPlot`, `clusterProfiler::dotplot` is able to visualize two metrics, which are the adjusted p-value and the `Count`, number of genes in the input set contributing to the enrichment.
