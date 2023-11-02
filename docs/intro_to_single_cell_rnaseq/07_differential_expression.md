@@ -187,7 +187,7 @@ DotPlot(cluster_6, features=deg_top5$gene) +
 
 ## Gene Ontology Functional Enrichment (Optional):
 
-The above functions give us lists of genes that help us to understand the behavior of cell types in our two conditions. Here we demonstrate the use of overrepresentation analysis together with the Gene Ontology database to understand the biological processes represented by the list of cluster 6 marker genes. Some details about overrepresentation analysis are available here.
+The above functions give us lists of genes that help us to understand the behavior of cell types in our two conditions. Here we demonstrate the use of overrepresentation analysis together with the Gene Ontology database to understand the biological processes represented by the list of cluster 6 marker genes. Some details about overrepresentation analysis are available [here](slides/overrepresentation_test.pdf).
 
 Here, we'll select the top 100 genes by `stim_avg_log2FC`. 
 ```R
