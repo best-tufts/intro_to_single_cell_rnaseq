@@ -2,7 +2,7 @@
 title: "Differential Expression"
 ---
 
-# Differential Expression [DRAFT]
+# Differential Expression
 
 In this section we will identify differentially expressed genes. This a complementary method to understanding the biological meaning of our clusters.
 
@@ -135,21 +135,6 @@ DotPlot(integ_seurat, features=markers_6_top5$gene) +
 
             
 ??? question "Can you write a for loop that runs `FindConservedMarkers` for all clusters and outputs a single table?" 
-    -Answer
-all_conserved_markers = data.frame()
-clusters = unique(tcell_int$integrated_snn_res.0.1)
-
-for(cl in clusters){
-  markers_conserved = FindConservedMarkers(tcell_int,
-                                           ident.1 = cl,
-                                           grouping.var = "orig.ident",
-                                           only.pos = TRUE,
-                                           logfc.threshold = 0.25)
-
-  markers_conserved$cluster = cl
-  markers_conserved$gene= rownames(markers_conserved)
-  all_conserved_markers = rbind(all_conserved_markers, markers_conserved)
-}
   
 ## Differentially Expressed Genes
 
@@ -233,8 +218,8 @@ Use `clusterProfiler::dotplot` to visualize the results:
 ```R
 dotplot(ego,
         font.size=10, 
-        show=10, 
-        by = "Count")
+        show=10,
+        orderBy="Count")
 ```
 ![](images/cp_dotplot.png)
 
