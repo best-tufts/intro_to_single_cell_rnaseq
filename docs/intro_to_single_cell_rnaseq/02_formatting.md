@@ -18,14 +18,6 @@ and exclude polymorphonuclear immune cell types (neutrophils) and  nucleus lacki
 
 ## Setting up R environment
 
-### R library source
-
-This workshop requires a series of R libraries. In order to load these libraries we will first set their path in our R environment.
-
-```R
-LIB='/cluster/tufts/hpc/tools/R/4.0.0/'
-.libPaths(c("",LIB))
-```
 
 ### Read in R packages
 
@@ -153,9 +145,8 @@ Note that as part of the output we see the term "Active assay: RNA". In `Seurat`
 The `count` slot always contains the expression data as counts as a sparse matrix. Below are a couple of examples for accessing these data from the Seurat object.
 
 ```R
-countSlot <- ctrl@assays$RNA@counts[1:5, 1:5]
-countSlot <- GetAssayData(ctrl, slot = "counts")[1:5, 1:5]
-countSlot[1:5, 1:5]
+countSlot <- GetAssayData(ctrl, assay = "RNA", layer = "counts")[1:5, 1:5]
+countSlot
 ```
 
 ![](images/countDatSlot.png)
@@ -165,9 +156,7 @@ countSlot[1:5, 1:5]
 The purpose of the `data` slot is to store normalized data. We will perform normalization procedures later in this workshop, and this is commonly performed using the `NormalizeData()` `Seurat` function. However, since no normalization has been performed, the `data` slot is currently identical to the `count` slot.
 
 ```R
-dataSlot <- ctrl@assays$RNA@data
-dataSlot <- GetAssayData(ctrl, slot = "data")
-dataSlot[1:5, 1:5]
+GetAssayData(ctrl, assay = "RNA", layer = "counts")[1:5, 1:5]
 ```
 
 ![](images/countDatSlot.png)
@@ -177,8 +166,11 @@ dataSlot[1:5, 1:5]
 Numerous analytic procedures are best suited for data that has been scaled, such that the mean expression of every genes is equal to 0 with standard deviation equal to 1. This procedure is generally performed on normalized data, and the resulting "scaled" data is stored in the `scale.data` slot. Accordingly, right now this slot is an empty matrix.
 
 ```R
-scalSlot <- ctrl@assays$RNA@scale.data
-scalSlot <- GetAssayData(ctrl, slot = "scale.data")
+scalSlot <- GetAssayData(
+  ctrl,
+  assay = "RNA",
+  layer = "scale.data")
+
 scalSlot
 ```
 
