@@ -192,7 +192,12 @@ For our data we choose to keep only genes which are expressed in 10 or more cell
 
 ```R
 ## Extract count matrix from Seurat object
-counts <- GetAssayData(object = filtered_seurat, slot = "counts")
+filtered_seurat <- JoinLayers(filtered_seurat)
+
+counts <- GetAssayData(
+  object = filtered_seurat,
+  assay = "RNA",
+  layer = "counts")
 
 ## Convert the counts to a matrix of logicals
 ## in which TRUE indicates counts > 0
@@ -203,6 +208,7 @@ keep_genes <- rowSums(nonzero) >= 10
 
 table(keep_genes)
 ```
+
 
 ![](images/keepGenes.png)
 
