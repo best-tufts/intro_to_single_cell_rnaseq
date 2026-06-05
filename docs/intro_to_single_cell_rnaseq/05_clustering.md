@@ -8,14 +8,6 @@ We will perform these procedures on our two-sample combined, formatted, QC'd, an
 
 We begin by setting up our R environment similar to the previous sections.
 
-### R library source
-
-We will be reading in and writing files relative to our `intro_to_scrnaseq`. For simplicity, we will create an R object that is simply a character string that gives this path, and use it as a prefix for reading and writing files.
-
-```R
-LIB='/cluster/tufts/hpc/tools/R/4.0.0/'
-.libPaths(c("",LIB))
-```
 
 ### Read in R packages
 
