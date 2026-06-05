@@ -6,14 +6,6 @@ In this section we will describe strategies for filtering out "low-quality" cell
 
 We begin by setting up our R environment similar to the previous section.
 
-### R library source
-
-We will be reading in and writing files relative to our `intro_to_scrnaseq`. For simplicity, we will create an R object that is simply a character string that gives this path, and use it as a prefix for reading and writing files.
-
-```R
-LIB='/cluster/tufts/hpc/tools/R/4.0.0/'
-.libPaths(c("",LIB))
-```
 
 ### Read in R packages
 
@@ -27,6 +19,7 @@ For this section, requires three R packages:
 library(Seurat)
 library(ggplot2)
 library(cowplot)
+library(tidyverse)
 ```
 
 ### Set base directory
