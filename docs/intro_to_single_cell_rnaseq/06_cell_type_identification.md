@@ -8,11 +8,7 @@ In this section, we'll demonstrate two automated methods to label cells in our d
 - [SingleR](https://bioconductor.org/packages/devel/bioc/vignettes/SingleR/inst/doc/SingleR.html) method, which uses correlation of gene expression. This method can use both single-cell and bulk RNAseq reference datasets. 
 - [Seurat Integration Mapping](https://satijalab.org/seurat/articles/integration_mapping.html) which applies integration between a labeled, reference single-cell RNAseq dataset and our query dataset
 
-To start, we set our library path on the HPC cluster:
-```R
-LIB='/cluster/tufts/hpc/tools/R/4.0.0/'
-.libPaths(c("",LIB))
-```
+
 
 We require three new packages:
 - [Singler](https://bioconductor.org/packages/release/bioc/html/SingleR.html)
@@ -298,7 +294,11 @@ Cluster 11 cells are labeled predominantly Dendritic Cells.
 
 Finally, we save the labeled object:
 ```R
-saveRDS(integ_seurat, file.path(baseDir,"results/labeled_seurat.rds"))
+integ_seurat <- UpdateSeuratObject(integ_seurat)
+
+saveRDS(
+  integ_seurat,
+  file.path(baseDir, "results/labeled_seurat.rds"))
 ```
 
 In the next section we'll look at a type of Differentially Expressed Gene known as a Marker Gene, which can help to confirm cell-type labels by confirming expression of known cell-type specific genes.
