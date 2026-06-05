@@ -11,11 +11,6 @@ Differential Expression in scRNAseq has multiple meanings. Here we focus on two 
 - Genes that are statistically different between groups of cells with different phenotypes or conditions, known as "Differentially Expressed Genes"
 
 
-To start, we set our library path:
-```R
-LIB='/cluster/tufts/hpc/tools/R/4.0.0/'
-.libPaths(c("",LIB))
-```
 
 We load our packages:
 
