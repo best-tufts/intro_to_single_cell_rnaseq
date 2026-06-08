@@ -13,11 +13,12 @@ Once you have an account and are connected to the VPN/Tufts Network, navigate to
 
     ![](images/ondemand_layout_pic.png)
 
-Click on `Interactive Apps > RStudio Pax` and you will see a form to fill out to request compute resources to use RStudio on the Tufts HPC cluster. We will fill out the form with the following entries:
+Click on `RStudio Server` either in `Interactive Apps` or in the `Pinned Apps`  and you will see a form to fill out to request compute resources to use RStudio on the Tufts HPC cluster. We will fill out the form with the following entries:
 
+- `Partition` : `batch`
 - `Number of hours` : `5`
-- `Number of cores` : `1`
-- `Amount of memory` : `16GB`
+- `Number of CPU cores` : `1`
+- `Memory per node (GB)` : `16GB`
 - `R version` : `4.6.0`
 - `Reservation for class, training, workshop` : `Bioinformatics Workshops`
     - **NOTE: This reservation will be available for registered participants only on Oct 26th and Nov 2nd 2023, use `Default` in all other cases.**
