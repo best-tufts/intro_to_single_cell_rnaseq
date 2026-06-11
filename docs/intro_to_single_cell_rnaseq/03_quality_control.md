@@ -148,20 +148,20 @@ TABnGene <- table(merged_seurat$nGene > 250)
 TABlog10GpUMI <- table(merged_seurat$log10GenesPerUMI > 0.8)
 
 # percMitoUMI
-TABpercMitoUMI <- table(merged_seurat$percMitoUMI > 0.2)
+TABpercMitoUMI <- table(merged_seurat$percMitoUMI < 20)
 
 # All filters
 TABall <- table(merged_seurat$nUMI > 500 &
                   merged_seurat$nGene > 250 &
                   merged_seurat$log10GenesPerUMI > 0.8 &
-                  merged_seurat$percMitoUMI > 0.2)
+                  merged_seurat$percMitoUMI < 20)
 
 # Compile results to a single data frame
 filterDF <- as.data.frame(rbind(TABnUMI, TABnGene, TABlog10GpUMI, TABpercMitoUMI, TABall))
 rownames(filterDF) <- c("nUMI > 500", 
                         "nGene > 250", 
                         "log10GenesPerUMI > 0.8", 
-                        "percMitoUMI > 0.2", 
+                        "percMitoUMI < 20", 
                         "All filters")
 colnames(filterDF) <- c("Fail", "Pass")
 
@@ -231,3 +231,6 @@ saveRDS(filtered_seurat, file.path(baseDir, "results/merged_filtered_seurat.rds"
 ```
 
 You can now open "04_integration.Rmd" to continue on the the next section.
+
+!!! question "Check your understanding"
+    Why might we remove cells with a high **percent mitochondrial UMI** (`percMitoUMI`) from our dataset, and when might we instead choose to leave these cells in?

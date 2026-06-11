@@ -16,4 +16,5 @@
 Brought to you by [Tufts Institute for Artificial Intelligence](https://ai.tufts.edu/). Please email tiai@tufts.edu with questions.
 
 - [Rebecca Batorsky, PhD, Data Scientist](https://disc.tufts.edu/people/rebecca-batorsky)
+- [Andreia Martinho, PhD, Postdoctoral Scholar](https://disc.tufts.edu/people/andreia-martinho-phd)
 

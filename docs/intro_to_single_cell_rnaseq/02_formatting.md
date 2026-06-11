@@ -346,4 +346,7 @@ saveRDS(merged_seurat, file.path(baseDir, "results/merged_seurat.rds"))
 
 You can now open "03_quality_control.Rmd" to continue on the the next section.
 
+!!! question "Check your understanding"
+    Which cell ID has the highest **percent mitochondrial UMI** (`percMitoUMI`) in this dataset? (Hint: try `which.max()` or `arrange(desc(percMitoUMI))` on the metadata.)
+
 
