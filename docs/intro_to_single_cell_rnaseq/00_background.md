@@ -1,5 +1,3 @@
-### Schedule
-
 #### Day 1
 
 | Time |  Topic  | Instructor |

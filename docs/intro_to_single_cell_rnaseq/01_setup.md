@@ -4,6 +4,8 @@
     - Obtain an Rstudio allocation in the Tufts Ondemand Server
     - Copy data from a location on the HPC to working directory
 
+
+
 ## Navigate To The Cluster
 Once you have an account and are connected to the VPN/Tufts Network, navigate to the [OnDemand Website](https://ondemand-prod.pax.tufts.edu/){:target="_blank" rel="noopener"} and log in with your tufts credentials. Once you are logged in you'll notice a few navigation options:
 

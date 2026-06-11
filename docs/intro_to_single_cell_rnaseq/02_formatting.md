@@ -6,6 +6,7 @@ In this section we will describe the common data structures of singe cell RNA se
     - Read single-cell RNAseq count matrices into R using `Seurat`
     - Merge count matrices from multiple conditions into a single object
 
+
 ## The Data
 
 For this workshop we will be working with a scRNAseq dataset which is part of a larger study from [Kang et al, 2017](https://www.nature.com/articles/nbt.4042). The data is comprised of pooled Peripheral Blood Mononuclear Cells (PBMCs) taken from lupus patients, split into control and interferon beta-treated (stimulated) conditions. The counts for this dataset is freely available from 10X Genomics and is used as part of a [Seurat tutorial](https://satijalab.org/seurat/archive/v3.0/immune_alignment.html).
