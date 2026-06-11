@@ -72,8 +72,9 @@ extra_javascript:
   - javascripts/tablesort.js
 
 nav:
-    - Workshop Materials : 
+    - Workshop Materials :
         - "Schedule": intro_to_single_cell_rnaseq/00_background.md
+        - "Introduction and Objectives": intro_to_single_cell_rnaseq/00_intro_and_objectives.md
         - "Set up": intro_to_single_cell_rnaseq/01_setup.md
         - "Formatting": intro_to_single_cell_rnaseq/02_formatting.md
         - "Quality Control": intro_to_single_cell_rnaseq/03_quality_control.md

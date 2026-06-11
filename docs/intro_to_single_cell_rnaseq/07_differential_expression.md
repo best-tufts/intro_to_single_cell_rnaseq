@@ -10,6 +10,10 @@ Differential Expression in scRNAseq has multiple meanings. Here we focus on two 
 - Genes that are overexpressed in on cell-type compared to all other cell-types, known as "Marker Genes"
 - Genes that are statistically different between groups of cells with different phenotypes or conditions, known as "Differentially Expressed Genes"
 
+!!! success "Learning Objectives"
+    - Identify marker genes that distinguish each cell type
+    - Identify differentially expressed genes and differentially abundant cell types between conditions
+
 
 
 We load our packages:

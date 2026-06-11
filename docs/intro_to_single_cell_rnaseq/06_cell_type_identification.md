@@ -8,6 +8,9 @@ In this section, we'll demonstrate two automated methods to label cells in our d
 - [SingleR](https://bioconductor.org/packages/devel/bioc/vignettes/SingleR/inst/doc/SingleR.html) method, which uses correlation of gene expression. This method can use both single-cell and bulk RNAseq reference datasets. 
 - [Seurat Integration Mapping](https://satijalab.org/seurat/articles/integration_mapping.html) which applies integration between a labeled, reference single-cell RNAseq dataset and our query dataset
 
+!!! success "Learning Objectives"
+    - Label clustered cell populations using reference-based methods
+
 
 
 We require three new packages:

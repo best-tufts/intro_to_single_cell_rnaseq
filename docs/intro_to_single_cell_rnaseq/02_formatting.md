@@ -2,6 +2,10 @@
 
 In this section we will describe the common data structures of singe cell RNA sequencing data (scRNAseq) data and how to read in and manipulate these data in R, specifically using the [`Seurat`](https://satijalab.org/seurat/) package. Furthermore, we will demonstrate how to read-in and merge multiple data sets. Portions of this section have been adapted from a previous Tufts HPC [workshop](https://hbctraining.github.io/scRNA-seq/lessons/03_SC_quality_control-setup.html).
 
+!!! success "Learning Objectives"
+    - Read single-cell RNAseq count matrices into R using `Seurat`
+    - Merge count matrices from multiple conditions into a single object
+
 ## The Data
 
 For this workshop we will be working with a scRNAseq dataset which is part of a larger study from [Kang et al, 2017](https://www.nature.com/articles/nbt.4042). The data is comprised of pooled Peripheral Blood Mononuclear Cells (PBMCs) taken from lupus patients, split into control and interferon beta-treated (stimulated) conditions. The counts for this dataset is freely available from 10X Genomics and is used as part of a [Seurat tutorial](https://satijalab.org/seurat/archive/v3.0/immune_alignment.html).

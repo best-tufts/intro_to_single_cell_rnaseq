@@ -2,6 +2,10 @@
 
 In this section we will describe strategies for filtering out "low-quality" cell profiles from scRNAseq data. We will perform quality control our two-sample combined and formatted PBMC scRNAseq data set [`Seurat`] object generated in the previous section. Portions of this section have been adapted from a previous Tufts HPC [workshop](https://hbctraining.github.io/scRNA-seq/lessons/03_SC_quality_control-setup.html).
 
+!!! success "Learning Objectives"
+    - Assess data quality using single-cell QC metrics
+    - Remove low quality cells from the data set
+
 ## Setting up R environment
 
 We begin by setting up our R environment similar to the previous section.

@@ -8,6 +8,10 @@ In this section we will describe procedures for processing scRNAseq data to faci
 
 We will perform these procedures on our two-sample combined, formatted, and QC'd PBMC scRNAseq data set [`Seurat`] object generated in the previous sections. Portions of this section have been adapted from  previous Tufts HPC describing [normalization](https://hbctraining.github.io/scRNA-seq_online/lessons/06_SC_SCT_normalization.html) and [integration](https://hbctraining.github.io/scRNA-seq_online/lessons/06_integration.html).
 
+!!! success "Learning Objectives"
+    - Normalize and reduce the dimensionality of the count matrices
+    - Integrate data from multiple conditions into a shared space
+
 ## Setting up R environment
 
 We begin by setting up our R environment similar to the previous sections.

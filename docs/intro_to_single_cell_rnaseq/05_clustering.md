@@ -4,6 +4,10 @@ In this section we will describe procedures for clustering scRNAseq.
 
 We will perform these procedures on our two-sample combined, formatted, QC'd, and integrated PBMC scRNAseq data set [`Seurat`] object generated in the previous sections. Portions of this section have been adapted from previous Tufts HPC workshops describing [clustering](https://hbctraining.github.io/scRNA-seq_online/lessons/07_SC_clustering_cells_SCT.html) and [clustering quality control](https://hbctraining.github.io/scRNA-seq_online/lessons/07_SC_clustering_cells_SCT.html).
 
+!!! success "Learning Objectives"
+    - Cluster cells into populations with similar expression profiles
+    - Visualize and assess the quality of the resulting clusters
+
 ## Setting up R environment
 
 We begin by setting up our R environment similar to the previous sections.
