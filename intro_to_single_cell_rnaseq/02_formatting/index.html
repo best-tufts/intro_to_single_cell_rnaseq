@@ -1,0 +1,1743 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../01_setup/">
+      
+      
+        <link rel="next" href="../03_quality_control/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Formatting - Bioinformatics Education and Services at Tufts</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+  
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+  
+  <style>:root{--md-admonition-icon--note:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M1%207.775V2.75C1%201.784%201.784%201%202.75%201h5.025c.464%200%20.91.184%201.238.513l6.25%206.25a1.75%201.75%200%200%201%200%202.474l-5.026%205.026a1.75%201.75%200%200%201-2.474%200l-6.25-6.25A1.75%201.75%200%200%201%201%207.775m1.5%200c0%20.066.026.13.073.177l6.25%206.25a.25.25%200%200%200%20.354%200l5.025-5.025a.25.25%200%200%200%200-.354l-6.25-6.25a.25.25%200%200%200-.177-.073H2.75a.25.25%200%200%200-.25.25ZM6%205a1%201%200%201%201%200%202%201%201%200%200%201%200-2%22/%3E%3C/svg%3E');--md-admonition-icon--abstract:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M2.5%201.75v11.5c0%20.138.112.25.25.25h3.17a.75.75%200%200%201%200%201.5H2.75A1.75%201.75%200%200%201%201%2013.25V1.75C1%20.784%201.784%200%202.75%200h8.5C12.216%200%2013%20.784%2013%201.75v7.736a.75.75%200%200%201-1.5%200V1.75a.25.25%200%200%200-.25-.25h-8.5a.25.25%200%200%200-.25.25m13.274%209.537zl-4.557%204.45a.75.75%200%200%201-1.055-.008l-1.943-1.95a.75.75%200%200%201%201.062-1.058l1.419%201.425%204.026-3.932a.75.75%200%201%201%201.048%201.074M4.75%204h4.5a.75.75%200%200%201%200%201.5h-4.5a.75.75%200%200%201%200-1.5M4%207.75A.75.75%200%200%201%204.75%207h2a.75.75%200%200%201%200%201.5h-2A.75.75%200%200%201%204%207.75%22/%3E%3C/svg%3E');--md-admonition-icon--info:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M0%208a8%208%200%201%201%2016%200A8%208%200%200%201%200%208m8-6.5a6.5%206.5%200%201%200%200%2013%206.5%206.5%200%200%200%200-13M6.5%207.75A.75.75%200%200%201%207.25%207h1a.75.75%200%200%201%20.75.75v2.75h.25a.75.75%200%200%201%200%201.5h-2a.75.75%200%200%201%200-1.5h.25v-2h-.25a.75.75%200%200%201-.75-.75M8%206a1%201%200%201%201%200-2%201%201%200%200%201%200%202%22/%3E%3C/svg%3E');--md-admonition-icon--tip:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M3.499.75a.75.75%200%200%201%201.5%200v.996C5.9%202.903%206.793%203.65%207.662%204.376l.24.202c-.036-.694.055-1.422.426-2.163C9.1.873%2010.794-.045%2012.622.26%2014.408.558%2016%201.94%2016%204.25c0%201.278-.954%202.575-2.44%202.734l.146.508.065.22c.203.701.412%201.455.476%202.226.142%201.707-.4%203.03-1.487%203.898C11.714%2014.671%2010.27%2015%208.75%2015h-6a.75.75%200%200%201%200-1.5h1.376a4.5%204.5%200%200%201-.563-1.191%203.84%203.84%200%200%201-.05-2.063%204.65%204.65%200%200%201-2.025-.293.75.75%200%200%201%20.525-1.406c1.357.507%202.376-.006%202.698-.318l.009-.01a.747.747%200%200%201%201.06%200%20.75.75%200%200%201-.012%201.074c-.912.92-.992%201.835-.768%202.586.221.74.745%201.337%201.196%201.621H8.75c1.343%200%202.398-.296%203.074-.836.635-.507%201.036-1.31.928-2.602-.05-.603-.216-1.224-.422-1.93l-.064-.221c-.12-.407-.246-.84-.353-1.29a2.4%202.4%200%200%201-.507-.441%203.1%203.1%200%200%201-.633-1.248.75.75%200%200%201%201.455-.364c.046.185.144.436.31.627.146.168.353.305.712.305.738%200%201.25-.615%201.25-1.25%200-1.47-.95-2.315-2.123-2.51-1.172-.196-2.227.387-2.706%201.345-.46.92-.27%201.774.019%203.062l.042.19.01.05c.348.443.666.949.94%201.553a.75.75%200%201%201-1.365.62c-.553-1.217-1.32-1.94-2.3-2.768L6.7%205.527c-.814-.68-1.75-1.462-2.692-2.619a3.7%203.7%200%200%200-1.023.88c-.406.495-.663%201.036-.722%201.508.116.122.306.21.591.239.388.038.797-.06%201.032-.19a.75.75%200%200%201%20.728%201.31c-.515.287-1.23.439-1.906.373-.682-.067-1.473-.38-1.879-1.193L.75%205.677V5.5c0-.984.48-1.94%201.077-2.664.46-.559%201.05-1.055%201.673-1.353z%22/%3E%3C/svg%3E');--md-admonition-icon--success:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M13.78%204.22a.75.75%200%200%201%200%201.06l-7.25%207.25a.75.75%200%200%201-1.06%200L2.22%209.28a.75.75%200%200%201%20.018-1.042.75.75%200%200%201%201.042-.018L6%2010.94l6.72-6.72a.75.75%200%200%201%201.06%200%22/%3E%3C/svg%3E');--md-admonition-icon--question:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M0%208a8%208%200%201%201%2016%200A8%208%200%200%201%200%208m8-6.5a6.5%206.5%200%201%200%200%2013%206.5%206.5%200%200%200%200-13M6.92%206.085h.001a.749.749%200%201%201-1.342-.67c.169-.339.436-.701.849-.977C6.845%204.16%207.369%204%208%204a2.76%202.76%200%200%201%201.637.525c.503.377.863.965.863%201.725%200%20.448-.115.83-.329%201.15-.205.307-.47.513-.692.662-.109.072-.22.138-.313.195l-.006.004a6%206%200%200%200-.26.16%201%201%200%200%200-.276.245.75.75%200%200%201-1.248-.832c.184-.264.42-.489.692-.661q.154-.1.313-.195l.007-.004c.1-.061.182-.11.258-.161a1%201%200%200%200%20.277-.245C8.96%206.514%209%206.427%209%206.25a.61.61%200%200%200-.262-.525A1.27%201.27%200%200%200%208%205.5c-.369%200-.595.09-.74.187a1%201%200%200%200-.34.398M9%2011a1%201%200%201%201-2%200%201%201%200%200%201%202%200%22/%3E%3C/svg%3E');--md-admonition-icon--warning:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M6.457%201.047c.659-1.234%202.427-1.234%203.086%200l6.082%2011.378A1.75%201.75%200%200%201%2014.082%2015H1.918a1.75%201.75%200%200%201-1.543-2.575Zm1.763.707a.25.25%200%200%200-.44%200L1.698%2013.132a.25.25%200%200%200%20.22.368h12.164a.25.25%200%200%200%20.22-.368Zm.53%203.996v2.5a.75.75%200%200%201-1.5%200v-2.5a.75.75%200%200%201%201.5%200M9%2011a1%201%200%201%201-2%200%201%201%200%200%201%202%200%22/%3E%3C/svg%3E');--md-admonition-icon--failure:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M2.344%202.343za8%208%200%200%201%2011.314%2011.314A8.002%208.002%200%200%201%20.234%2010.089a8%208%200%200%201%202.11-7.746m1.06%2010.253a6.5%206.5%200%201%200%209.108-9.275%206.5%206.5%200%200%200-9.108%209.275M6.03%204.97%208%206.94l1.97-1.97a.749.749%200%200%201%201.275.326.75.75%200%200%201-.215.734L9.06%208l1.97%201.97a.749.749%200%200%201-.326%201.275.75.75%200%200%201-.734-.215L8%209.06l-1.97%201.97a.749.749%200%200%201-1.275-.326.75.75%200%200%201%20.215-.734L6.94%208%204.97%206.03a.75.75%200%200%201%20.018-1.042.75.75%200%200%201%201.042-.018%22/%3E%3C/svg%3E');--md-admonition-icon--danger:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M9.504.43a1.516%201.516%200%200%201%202.437%201.713L10.415%205.5h2.123c1.57%200%202.346%201.909%201.22%203.004l-7.34%207.142a1.25%201.25%200%200%201-.871.354h-.302a1.25%201.25%200%200%201-1.157-1.723L5.633%2010.5H3.462c-1.57%200-2.346-1.909-1.22-3.004zm1.047%201.074L3.286%208.571A.25.25%200%200%200%203.462%209H6.75a.75.75%200%200%201%20.694%201.034l-1.713%204.188%206.982-6.793A.25.25%200%200%200%2012.538%207H9.25a.75.75%200%200%201-.683-1.06l2.008-4.418.003-.006-.004-.009-.006-.006-.008-.001q-.005%200-.009.004%22/%3E%3C/svg%3E');--md-admonition-icon--bug:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M4.72.22a.75.75%200%200%201%201.06%200l1%20.999a3.5%203.5%200%200%201%202.441%200l.999-1a.748.748%200%200%201%201.265.332.75.75%200%200%201-.205.729l-.775.776c.616.63.995%201.493.995%202.444v.327q0%20.15-.025.292c.408.14.764.392%201.029.722l1.968-.787a.75.75%200%200%201%20.556%201.392L13%207.258V9h2.25a.75.75%200%200%201%200%201.5H13v.5q-.002.615-.141%201.186l2.17.868a.75.75%200%200%201-.557%201.392l-2.184-.873A5%205%200%200%201%208%2016a5%205%200%200%201-4.288-2.427l-2.183.873a.75.75%200%200%201-.558-1.392l2.17-.868A5%205%200%200%201%203%2011v-.5H.75a.75.75%200%200%201%200-1.5H3V7.258L.971%206.446a.75.75%200%200%201%20.558-1.392l1.967.787c.265-.33.62-.583%201.03-.722a1.7%201.7%200%200%201-.026-.292V4.5c0-.951.38-1.814.995-2.444L4.72%201.28a.75.75%200%200%201%200-1.06m.53%206.28a.75.75%200%200%200-.75.75V11a3.5%203.5%200%201%200%207%200V7.25a.75.75%200%200%200-.75-.75ZM6.173%205h3.654A.17.17%200%200%200%2010%204.827V4.5a2%202%200%201%200-4%200v.327c0%20.096.077.173.173.173%22/%3E%3C/svg%3E');--md-admonition-icon--example:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M5%205.782V2.5h-.25a.75.75%200%200%201%200-1.5h6.5a.75.75%200%200%201%200%201.5H11v3.282l3.666%205.76C15.619%2013.04%2014.543%2015%2012.767%2015H3.233c-1.776%200-2.852-1.96-1.899-3.458Zm-2.4%206.565a.75.75%200%200%200%20.633%201.153h9.534a.75.75%200%200%200%20.633-1.153L12.225%2010.5h-8.45ZM9.5%202.5h-3V6c0%20.143-.04.283-.117.403L4.73%209h6.54L9.617%206.403A.75.75%200%200%201%209.5%206Z%22/%3E%3C/svg%3E');--md-admonition-icon--prerequisite:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M5%205.782V2.5h-.25a.75.75%200%200%201%200-1.5h6.5a.75.75%200%200%201%200%201.5H11v3.282l3.666%205.76C15.619%2013.04%2014.543%2015%2012.767%2015H3.233c-1.776%200-2.852-1.96-1.899-3.458Zm-2.4%206.565a.75.75%200%200%200%20.633%201.153h9.534a.75.75%200%200%200%20.633-1.153L12.225%2010.5h-8.45ZM9.5%202.5h-3V6c0%20.143-.04.283-.117.403L4.73%209h6.54L9.617%206.403A.75.75%200%200%201%209.5%206Z%22/%3E%3C/svg%3E');--md-admonition-icon--quote:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M1.75%202.5h10.5a.75.75%200%200%201%200%201.5H1.75a.75.75%200%200%201%200-1.5m4%205h8.5a.75.75%200%200%201%200%201.5h-8.5a.75.75%200%200%201%200-1.5m0%205h8.5a.75.75%200%200%201%200%201.5h-8.5a.75.75%200%200%201%200-1.5M2.5%207.75v6a.75.75%200%200%201-1.5%200v-6a.75.75%200%200%201%201.5%200%22/%3E%3C/svg%3E');}</style>
+
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#single-cell-rna-sequencing-data-structures-in-r" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Bioinformatics Education and Services at Tufts" class="md-header__button md-logo" aria-label="Bioinformatics Education and Services at Tufts" data-md-component="logo">
+      
+  <img src="../../images/logo1.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Bioinformatics Education and Services at Tufts
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Formatting
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="blue"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="blue"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/best-tufts/intro_to_single_cell_rnaseq" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../00_background/" class="md-tabs__link">
+          
+  
+  
+  Workshop Materials
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../.." class="md-tabs__link">
+          
+  
+  
+  All Workshops
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Bioinformatics Education and Services at Tufts" class="md-nav__button md-logo" aria-label="Bioinformatics Education and Services at Tufts" data-md-component="logo">
+      
+  <img src="../../images/logo1.svg" alt="logo">
+
+    </a>
+    Bioinformatics Education and Services at Tufts
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/best-tufts/intro_to_single_cell_rnaseq" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Workshop Materials
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Workshop Materials
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../00_background/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Schedule
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../00_intro_and_objectives/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Introduction and Objectives
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01_setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Set up
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Formatting
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Formatting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Data
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#setting-up-r-environment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Setting up R environment
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Setting up R environment">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#read-in-r-packages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Read in R packages
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set-base-directory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Set base directory
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scrnaseq-count-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        scRNAseq count files
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="scRNAseq count files">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#barcodestsvgz" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        barcodes.tsv.gz
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#featurestsvgz" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        features.tsv.gz
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#matrixmtxgz" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        matrix.mtx.gz
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creating-seurat-objects" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Creating Seurat objects
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#seurat-object-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Seurat object structure
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#expression-data-assays" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Expression data "assays"
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Expression data &#34;assays&#34;">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-counts-layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The counts layer
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-data-layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The data layer
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-scaledata-layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The scale.data layer
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#seurat-objects-with-multiple-assays" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Seurat objects with multiple assays
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cell-profile-metadata" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cell profile metadata
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#combining-data-sets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Combining data sets
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#adding-metadata-for-downstream-analyses" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Adding metadata for downstream analyses
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Adding metadata for downstream analyses">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#novelty-score" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Novelty score
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#percent-mitochondrial-umi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Percent mitochondrial UMI
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#finishing-touches" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Finishing touches
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#save-seurat-object" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Save seurat object
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03_quality_control/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quality Control
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04_integration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Integration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05_clustering/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Clustering
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06_cell_type_identification/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cell Type Identification
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07_differential_expression/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Differential Expression
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    All Workshops
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    All Workshops
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    All Workshops
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Data
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#setting-up-r-environment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Setting up R environment
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Setting up R environment">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#read-in-r-packages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Read in R packages
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set-base-directory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Set base directory
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scrnaseq-count-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        scRNAseq count files
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="scRNAseq count files">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#barcodestsvgz" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        barcodes.tsv.gz
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#featurestsvgz" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        features.tsv.gz
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#matrixmtxgz" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        matrix.mtx.gz
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creating-seurat-objects" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Creating Seurat objects
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#seurat-object-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Seurat object structure
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#expression-data-assays" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Expression data "assays"
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Expression data &#34;assays&#34;">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-counts-layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The counts layer
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-data-layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The data layer
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-scaledata-layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The scale.data layer
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#seurat-objects-with-multiple-assays" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Seurat objects with multiple assays
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cell-profile-metadata" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cell profile metadata
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#combining-data-sets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Combining data sets
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#adding-metadata-for-downstream-analyses" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Adding metadata for downstream analyses
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Adding metadata for downstream analyses">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#novelty-score" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Novelty score
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#percent-mitochondrial-umi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Percent mitochondrial UMI
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#finishing-touches" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Finishing touches
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#save-seurat-object" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Save seurat object
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/best-tufts/intro_to_single_cell_rnaseq/blob/main/docs/intro_to_single_cell_rnaseq/02_formatting.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+
+
+<h1 id="single-cell-rna-sequencing-data-structures-in-r">Single Cell RNA Sequencing Data Structures in R</h1>
+<p>In this section we will describe the common data structures of singe cell RNA sequencing data (scRNAseq) data and how to read in and manipulate these data in R, specifically using the <a href="https://satijalab.org/seurat/"><code>Seurat</code></a> package. Furthermore, we will demonstrate how to read-in and merge multiple data sets. Portions of this section have been adapted from a previous Tufts HPC <a href="https://hbctraining.github.io/scRNA-seq/lessons/03_SC_quality_control-setup.html">workshop</a>.</p>
+<div class="admonition success">
+<p class="admonition-title">Learning Objectives</p>
+<ul>
+<li>Read single-cell RNAseq count matrices into R using <code>Seurat</code></li>
+<li>Merge count matrices from multiple conditions into a single object</li>
+</ul>
+</div>
+<h2 id="the-data">The Data</h2>
+<p>For this workshop we will be working with a scRNAseq dataset which is part of a larger study from <a href="https://www.nature.com/articles/nbt.4042">Kang et al, 2017</a>. The data is comprised of pooled Peripheral Blood Mononuclear Cells (PBMCs) taken from lupus patients, split into control and interferon beta-treated (stimulated) conditions. The counts for this dataset is freely available from 10X Genomics and is used as part of a <a href="https://satijalab.org/seurat/archive/v3.0/immune_alignment.html">Seurat tutorial</a>.</p>
+<p>Since they comprise PBMCs, we expect these data to include mononuclear immune cells, such as</p>
+<ul>
+<li>B cells</li>
+<li>T cells</li>
+<li>Natural killer cells</li>
+<li>Monocytes</li>
+<li>Macrophages</li>
+</ul>
+<p>and exclude polymorphonuclear immune cell types (neutrophils) and  nucleus lacking blood cells (erythrocytes and platelets).</p>
+<h2 id="setting-up-r-environment">Setting up R environment</h2>
+<h3 id="read-in-r-packages">Read in R packages</h3>
+<p>For this section, requires three R packages:</p>
+<ol>
+<li><code>Seurat</code> : A package for working with and analysis of scRNAseq data. Comprehensive tutorials for available analyses with the <code>Seurat</code> R package are available on the project <a href="https://satijalab.org/seurat/">website</a>.</li>
+<li><code>Matrix</code>: A package for working with large data matrices.</li>
+<li><code>tidyverse</code> : Actually a compendia of packages, which include functionality for "tidy" data wrangling.</li>
+</ol>
+<div class="highlight"><pre><span></span><code><span class="nf">library</span><span class="p">(</span><span class="n">Seurat</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">Matrix</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">tidyverse</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="set-base-directory">Set base directory</h3>
+<p>We will be reading in and writing files relative to our <code>intro_to_scrnaseq</code>. For simplicity, we will create an R object that is simply a character string that gives this path, and use it as a prefix for reading and writing files.</p>
+<div class="highlight"><pre><span></span><code><span class="n">baseDir</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s">&quot;~/intro_to_scrnaseq/&quot;</span>
+</code></pre></div>
+<h2 id="scrnaseq-count-files">scRNAseq count files</h2>
+<p>Following pre-processing of raw files, scRNAseq count data is generally stored in directories containing three files. In this workshop will be working with two scRNAseq count data sets for each of our two condition, stored in two directories:</p>
+<ol>
+<li><code>ctrl_raw_feature_bc_matrix</code> : Control PBMCs</li>
+<li><code>stim_raw_feature_bc_matrix</code> : Interferon beta-treated (stimulated) PBMCs</li>
+</ol>
+<p>Each directory contains our count data as three compressed files:</p>
+<ol>
+<li><code>barcodes.tsv.gz</code></li>
+<li><code>features.tsv.gz</code></li>
+<li><code>matrix.mtx.gz</code></li>
+</ol>
+<p>Next, we will read in describe each file in the <code>ctrl_raw_feature_bc_matrix</code> directory.</p>
+<h3 id="barcodestsvgz"><code>barcodes.tsv.gz</code></h3>
+<p>This is a text file which contains all cellular barcodes present for that sample. Barcodes are listed in the order of data presented in the matrix file (i.e. these are the column names).</p>
+<div class="highlight"><pre><span></span><code><span class="n">barcodes</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">read.delim</span><span class="p">(</span><span class="nf">file.path</span><span class="p">(</span><span class="n">baseDir</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;data/ctrl_raw_feature_bc_matrix/barcodes.tsv.gz&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">header</span><span class="o">=</span><span class="bp">F</span><span class="p">)</span>
+<span class="nf">head</span><span class="p">(</span><span class="n">barcodes</span><span class="p">)</span>
+</code></pre></div>
+<p><img alt="" src="../images/barcodes.png" /></p>
+<h3 id="featurestsvgz"><code>features.tsv.gz</code></h3>
+<p>This is a text file which contains the identifiers of the quantified genes. The source of the identifier can vary depending on what reference (i.e. Ensembl, NCBI, UCSC) you use in the quantification methods, but most often these are official gene symbols. The order of these genes corresponds to the order of the rows in the matrix file (i.e. these are the row names).</p>
+<div class="highlight"><pre><span></span><code><span class="n">features</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">read.delim</span><span class="p">(</span><span class="nf">file.path</span><span class="p">(</span><span class="n">baseDir</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;data/ctrl_raw_feature_bc_matrix/features.tsv.gz&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">header</span><span class="o">=</span><span class="bp">F</span><span class="p">)</span>
+<span class="nf">head</span><span class="p">(</span><span class="n">features</span><span class="p">)</span>
+</code></pre></div>
+<p><img alt="" src="../images/features.png" /></p>
+<h3 id="matrixmtxgz"><code>matrix.mtx.gz</code></h3>
+<p>This is a text file which contains a matrix of count values. The rows are associated with the gene IDs above and columns correspond to the cellular barcodes. Note that there are many zero values in this matrix.</p>
+<p>Note, we will read this file in R, using the <code>readMM()</code> function from the <code>Matrix</code> package. This will create a "sparse matrix" which is formatted to save space due the redundancy of 0 values. When we view this object, 0 values are shown as "."s. Below, we print the first ten rows and columns.</p>
+<div class="highlight"><pre><span></span><code><span class="n">matrix</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">readMM</span><span class="p">(</span><span class="nf">file.path</span><span class="p">(</span><span class="n">baseDir</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;data/ctrl_raw_feature_bc_matrix/matrix.mtx.gz&quot;</span><span class="p">))</span>
+<span class="n">matrix</span><span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="m">10</span><span class="p">]</span>
+</code></pre></div>
+<p><img alt="" src="../images/matrixObject.png" /></p>
+<p>Based on the dimensions of this object, we see that there are 33,538 genes (rows), and 737,280 samples (columns) in these data.</p>
+<div class="highlight"><pre><span></span><code><span class="nf">dim</span><span class="p">(</span><span class="n">matrix</span><span class="p">)</span>
+</code></pre></div>
+<p><img alt="" src="../images/dimMatrix.png" /></p>
+<h2 id="creating-seurat-objects">Creating Seurat objects</h2>
+<p>As previously mentions, in this workshop, we are going to perform the bulk of scRNAseq data manipulation and analysis using the <code>Seurat</code> R package. To this end, we are going to start by reading in the data to a <code>Seurat</code> object. A <code>Seurat</code> object has a specific data structure, for which functionality of the <code>Seurat</code> R package is built around for performing various procedures with our scRNAseq data.</p>
+<p>This can be performed in two steps.</p>
+<p>First, we use the <code>Read10X()</code> function from the <code>Seurat</code> package to load our scRNAseq data into R. This function assumes that our data is stored in a directory containing our three files, <code>barcodes.tsv.gz</code>, <code>features.tsv.gz</code>, <code>matrix.mtx.gz</code>, which is the standard for scRNAseq data generated by 10X Genomics. Thus, rather than reading in each file individually, we only need to set the path to the directory.</p>
+<div class="highlight"><pre><span></span><code><span class="n">ctrl_counts</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">Read10X</span><span class="p">(</span><span class="n">data.dir</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">file.path</span><span class="p">(</span><span class="n">baseDir</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;data/ctrl_raw_feature_bc_matrix&quot;</span><span class="p">))</span>
+</code></pre></div>
+<p>Second, we use the <code>CreateSeuratObject()</code> function to convert the data as a <code>Seurat</code> object. Additionally, when we implement this function, we perform an initial data processing step by setting <code>min.features = 100</code>. This will remove cell profiles for which there are fewer than 100 genes with counts greater than 0.</p>
+<div class="highlight"><pre><span></span><code><span class="n">ctrl</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">CreateSeuratObject</span><span class="p">(</span><span class="n">counts</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ctrl_counts</span><span class="p">,</span>
+<span class="w">                           </span><span class="n">min.features</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">100</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="seurat-object-structure">Seurat object  structure</h2>
+<p>Basic features of a <code>Seurat</code> object can be viewed by simply calling the object itself.</p>
+<p>For example, viewing the object output we can see that after filtering low coverage samples, we are left with 15,688 cell profiles. Which is only about 2% of the total in the raw count matrix file.</p>
+<div class="highlight"><pre><span></span><code><span class="n">ctrl</span>
+</code></pre></div>
+<p><img alt="" src="../images/ctrlObject.png" /></p>
+<h2 id="expression-data-assays">Expression data "assays"</h2>
+<p>Note that as part of the output we see the term "Active assay: RNA". In <code>Seurat</code> objects, expression data is organized into these "assays", where each assay is a container in which different states of the expression data are stored separately. In Seurat v5, expression data within an assay are stored in <strong>layers</strong> rather than slots. Common layers include <code>counts</code>, <code>data</code>, and <code>scale.data</code>.</p>
+<ul>
+<li><code>RNA</code> assay<ul>
+<li><code>counts</code> layer</li>
+<li><code>data</code> layer</li>
+<li><code>scale.data</code> layer</li>
+</ul>
+</li>
+</ul>
+<h3 id="the-counts-layer">The <code>counts</code> layer</h3>
+<p>The <code>counts</code> layer contains the expression data as counts in a sparse matrix. Below are a couple of examples for accessing these data from the Seurat object.</p>
+<div class="highlight"><pre><span></span><code><span class="n">countSlot</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">GetAssayData</span><span class="p">(</span><span class="n">ctrl</span><span class="p">,</span><span class="w"> </span><span class="n">assay</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;RNA&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">layer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;counts&quot;</span><span class="p">)[</span><span class="m">1</span><span class="o">:</span><span class="m">5</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="m">5</span><span class="p">]</span>
+<span class="n">countSlot</span>
+</code></pre></div>
+<p><img alt="" src="../images/countDatSlot.png" /></p>
+<h3 id="the-data-layer">The <code>data</code> layer</h3>
+<p>The purpose of the <code>data</code> layer is to store normalized data. We will perform normalization procedures later in this workshop, and this is commonly performed using the <code>NormalizeData()</code> <code>Seurat</code> function. Since no normalization has been performed yet, the <code>data</code> layer is currently empty. For now, we show the <code>counts</code> layer again for comparison.</p>
+<div class="highlight"><pre><span></span><code><span class="nf">GetAssayData</span><span class="p">(</span><span class="n">ctrl</span><span class="p">,</span><span class="w"> </span><span class="n">assay</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;RNA&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">layer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;counts&quot;</span><span class="p">)[</span><span class="m">1</span><span class="o">:</span><span class="m">5</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="m">5</span><span class="p">]</span>
+</code></pre></div>
+<p><img alt="" src="../images/countDatSlot.png" /></p>
+<h3 id="the-scaledata-layer">The <code>scale.data</code> layer</h3>
+<p>Numerous analytic procedures are best suited for data that has been scaled, such that the mean expression of every gene is equal to 0 with standard deviation equal to 1. This procedure is generally performed on normalized data, and the resulting scaled data is stored in the <code>scale.data</code> layer. Since scaling has not yet been performed, this layer is currently empty.</p>
+<div class="highlight"><pre><span></span><code><span class="n">scalSlot</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">GetAssayData</span><span class="p">(</span>
+<span class="w">  </span><span class="n">ctrl</span><span class="p">,</span>
+<span class="w">  </span><span class="n">assay</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;RNA&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="n">layer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;scale.data&quot;</span><span class="p">)</span>
+
+<span class="n">scalSlot</span>
+</code></pre></div>
+<p><img alt="" src="../images/zeroBYzero.png" /></p>
+<h3 id="seurat-objects-with-multiple-assays"><code>Seurat</code> objects with multiple assays</h3>
+<p>To prevent overwriting data or necessitating the creation of multiple <code>Seurat</code> objects, various procedures will create new assays for storing data. For example, later in this workshop we will perform a procedure, using the <code>SCTransform()</code> function (detailed later), which creates a new assay and the resulting assay structure of the <code>Seurat</code> object will have an assay structure:</p>
+<ul>
+<li>RNA assay<ul>
+<li>counts</li>
+<li>data</li>
+<li>scale.data</li>
+</ul>
+</li>
+<li>SCT assay<ul>
+<li>counts</li>
+<li>data</li>
+<li>scale.data</li>
+</ul>
+</li>
+</ul>
+<p>We can list the available assays that have been created using the <code>Assays()</code> <code>Seurat</code> function. More importantly we can set the default assay using the <code>DefaultAssay()</code> function. This is good practice when working with <code>Seurat</code> objects containing multiple assays, to ensure that specific procedures are performed on the data for which they are intended.</p>
+<div class="highlight"><pre><span></span><code><span class="nf">Assays</span><span class="p">(</span><span class="n">ctrl</span><span class="p">)</span>
+<span class="nf">DefaultAssay</span><span class="p">(</span><span class="n">ctrl</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s">&quot;RNA&quot;</span>
+</code></pre></div>
+<h2 id="cell-profile-metadata">Cell profile metadata</h2>
+<p>In <code>Seurat</code> objects, the "metadata" refers to a data frame, in which we store additional information for each cell profile.</p>
+<p>We can access this data from the <code>Seurat</code> object in a number of ways. For example, below we show two ways of accessing the entire metadata data frame.</p>
+<div class="highlight"><pre><span></span><code><span class="n">metaData</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ctrl</span><span class="p">[[]]</span>
+<span class="n">metaData</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ctrl</span><span class="o">@</span><span class="n">meta.data</span>
+<span class="nf">head</span><span class="p">(</span><span class="n">metaData</span><span class="p">)</span>
+</code></pre></div>
+<p><img alt="" src="../images/metaData1.png" /></p>
+<p>Here, the rows are in the same order as the expression matrix, which allows use to index the expression data based on this information. </p>
+<p>By default, the <code>CreateSeuratObject()</code> function creates three columns in the meta.data</p>
+<ul>
+<li><code>orig.ident</code>: An identifier for the data set</li>
+<li><code>nCount_RNA</code>: The total number of counts each cell profile</li>
+<li><code>nFeature_RNA</code>: The total number of genes with counts &gt; 0. </li>
+</ul>
+<p>In addition to all columns there are a number of ways to extract specific columns in the metadata directly from the <code>Seurat</code> object. For example, here are two ways we can extract the <code>nCount_RNA</code> column from the metadata.</p>
+<p><div class="highlight"><pre><span></span><code><span class="n">nCount</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ctrl</span><span class="o">$</span><span class="n">nCount_RNA</span>
+<span class="n">nCount</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ctrl</span><span class="o">@</span><span class="n">meta.data</span><span class="o">$</span><span class="n">nCount_RNA</span>
+<span class="nf">head</span><span class="p">(</span><span class="n">nCount</span><span class="p">)</span>
+</code></pre></div>
+<img alt="" src="../images/nCount.png" /></p>
+<p>Alternatively, there are many ways to extract multiple metadata columns from the <code>Seurat</code> object.</p>
+<p><div class="highlight"><pre><span></span><code><span class="n">multCols</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ctrl</span><span class="o">@</span><span class="n">meta.data</span><span class="p">[,</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;nCount_RNA&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;nFeature_RNA&quot;</span><span class="p">)]</span>
+<span class="n">multCols</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ctrl</span><span class="p">[[</span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;nCount_RNA&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;nFeature_RNA&quot;</span><span class="p">)]]</span>
+<span class="nf">head</span><span class="p">(</span><span class="n">multCols</span><span class="p">)</span>
+</code></pre></div>
+<img alt="" src="../images/metaData2.png" /></p>
+<h2 id="combining-data-sets">Combining data sets</h2>
+<p>It is common for scRNAseq projects to include multiple samples profiled separately. In our case we have two separate data sets, comprising profiles from "control" and "stimulated" PBMC samples. Accordingly, we're going to combine these data into a single <code>Seurat</code> object, while assigning information as to their source in the metadata.</p>
+<p>Here, we use a <code>for</code> loop to read in each of the two data sets. Within each we assign an identity to each data set using the <code>project</code> argument.</p>
+<div class="highlight"><pre><span></span><code><span class="kr">for</span><span class="w"> </span><span class="p">(</span><span class="n">file</span><span class="w"> </span><span class="kr">in</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;ctrl_raw_feature_bc_matrix&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;stim_raw_feature_bc_matrix&quot;</span><span class="p">)){</span>
+<span class="w">  </span><span class="n">seurat_data</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">Read10X</span><span class="p">(</span><span class="n">data.dir</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">file.path</span><span class="p">(</span><span class="n">baseDir</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;data&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">file</span><span class="p">))</span>
+<span class="w">  </span><span class="n">seurat_obj</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">CreateSeuratObject</span><span class="p">(</span><span class="n">counts</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">seurat_data</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                                   </span><span class="n">min.features</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">100</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                                   </span><span class="n">project</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">file</span><span class="p">)</span>
+<span class="w">  </span><span class="nf">assign</span><span class="p">(</span><span class="n">file</span><span class="p">,</span><span class="w"> </span><span class="n">seurat_obj</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>We have just created two <code>Seurat</code> objects, <code>ctrl_raw_feature_bc_matrix</code> and <code>stim_raw_feature_bc_matrix</code>. And if we check the metadata of <code>ctrl_raw_feature_bc_matrix</code> to see that its source has been saved in the <code>orig.identity</code> column.</p>
+<div class="highlight"><pre><span></span><code><span class="nf">head</span><span class="p">(</span><span class="n">ctrl_raw_feature_bc_matrix</span><span class="o">@</span><span class="n">meta.data</span><span class="p">)</span>
+</code></pre></div>
+<p><img alt="" src="../images/metaData3.png" /></p>
+<p>Finally, we merge the two <code>Seurat</code> objects with the <code>merge()</code> function below. Since each data set will contain likely some of the same cell profile identifiers, e.g. "AAACATACAATGCC-1", we add a prefix to these identifiers using the <code>add.cell.id</code> argument.</p>
+<div class="highlight"><pre><span></span><code><span class="n">merged_seurat</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">merge</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ctrl_raw_feature_bc_matrix</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                       </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">stim_raw_feature_bc_matrix</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                       </span><span class="n">add.cell.id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;ctrl&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;stim&quot;</span><span class="p">))</span>
+</code></pre></div>
+<p>Using the <code>orig.identity</code> column we can check how many cell profiles from each data set are contained in the merged data set.</p>
+<div class="highlight"><pre><span></span><code><span class="nf">table</span><span class="p">(</span><span class="n">merged_seurat</span><span class="o">@</span><span class="n">meta.data</span><span class="o">$</span><span class="n">orig.ident</span><span class="p">)</span>
+</code></pre></div>
+<p><img alt="" src="../images/mergeCounts.png" /></p>
+<h2 id="adding-metadata-for-downstream-analyses">Adding metadata for downstream analyses</h2>
+<p>Now that we have the fully merged scRNAseq data, we will add a couple additional columns to our metadata, which we will later use for quality control. These columns comprise calculations of two metrics, which are indicative the quality of individual cell profiles.</p>
+<ul>
+<li><strong>Novelty score</strong>: this metric with give us an idea of the complexity of our dataset (more genes detected per UMI, more complex our data).</li>
+<li><strong>Percent mitochondrial UMI</strong>: this metric will give us a percentage of cell reads originating from the mitochondrial genes</li>
+</ul>
+<h3 id="novelty-score">Novelty score</h3>
+<p>This value is quite easy to calculate, as we take the <strong>log10</strong> of the number of genes detected per cell and the <strong>log10</strong> of the number of UMIs per cell, then divide the <strong>log10</strong> number of genes by the log10 number of UMIs. The novelty score and how it relates to complexity of the RNA species, is described in more detail later in this lesson.</p>
+<div class="highlight"><pre><span></span><code><span class="n">merged_seurat</span><span class="o">$</span><span class="n">log10GenesPerUMI</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">log10</span><span class="p">(</span><span class="n">merged_seurat</span><span class="o">$</span><span class="n">nFeature_RNA</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nf">log10</span><span class="p">(</span><span class="n">merged_seurat</span><span class="o">$</span><span class="n">nCount_RNA</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="percent-mitochondrial-umi">Percent mitochondrial UMI</h3>
+<p>Seurat has a convenient function that allows us to calculate the **proportion of transcripts mapping to mitochondrial genes(. The <code>PercentageFeatureSet()</code> function takes in a pattern argument and searches through all gene identifiers in the dataset for that pattern. Since we are looking for mitochondrial genes, we are searching any gene identifiers that begin with the pattern "MT-". For each cell, the function takes the sum of counts across all genes (features) belonging to the "Mt-" set, and then divides by the count sum for all genes (features). This value is multiplied by 100 to obtain a percentage value.</p>
+<div class="highlight"><pre><span></span><code><span class="n">merged_seurat</span><span class="o">$</span><span class="n">percMitoUMI</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">PercentageFeatureSet</span><span class="p">(</span><span class="n">object</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">merged_seurat</span><span class="p">,</span><span class="w"> </span><span class="n">pattern</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;^MT-&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="finishing-touches">Finishing touches</h2>
+<p>Finally, we will make a few additional changes to our metadata to facilitate downstream analyses.</p>
+<p>First, we will create a new metadata column with simplified identifers for each of the merged data sets. We can do this easily, by taking the first 4 characters of the values from the <code>orig.identity</code> column, and assigning them to a new column.</p>
+<div class="highlight"><pre><span></span><code><span class="n">merged_seurat</span><span class="o">$</span><span class="n">sample</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">substr</span><span class="p">(</span><span class="n">merged_seurat</span><span class="o">@</span><span class="n">meta.data</span><span class="o">$</span><span class="n">orig.ident</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">)</span>
+
+<span class="nf">table</span><span class="p">(</span><span class="n">merged_seurat</span><span class="o">$</span><span class="n">sample</span><span class="p">)</span>
+</code></pre></div>
+<p><img alt="" src="../images/sampTab.png" /></p>
+<p>Next, we will rename several of metadata column names short, so they are shorter and more intuitive (to us at least).</p>
+<div class="highlight"><pre><span></span><code><span class="n">merged_seurat</span><span class="o">@</span><span class="n">meta.data</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">merged_seurat</span><span class="o">@</span><span class="n">meta.data</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="n">dplyr</span><span class="o">::</span><span class="nf">rename</span><span class="p">(</span><span class="n">seq_folder</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">orig.ident</span><span class="p">,</span>
+<span class="w">                </span><span class="n">nUMI</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nCount_RNA</span><span class="p">,</span>
+<span class="w">                </span><span class="n">nGene</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nFeature_RNA</span><span class="p">)</span>
+</code></pre></div>
+<p>Lastly we can check the final formatted metadata dataframe with all of our newly added and formatted metadata columns. These are a lot of columns to view in our console and html output, so we'll just use the <code>View()</code> R function.</p>
+<div class="highlight"><pre><span></span><code>View(merged_seurat@meta.data)
+</code></pre></div>
+<p><img alt="" src="../images/metaData4.png" /></p>
+<h2 id="save-seurat-object">Save seurat object</h2>
+<p>That's it! At this point, we can save our merged data set and move on to quality control.</p>
+<div class="highlight"><pre><span></span><code><span class="nf">saveRDS</span><span class="p">(</span><span class="n">merged_seurat</span><span class="p">,</span><span class="w"> </span><span class="nf">file.path</span><span class="p">(</span><span class="n">baseDir</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;results/merged_seurat.rds&quot;</span><span class="p">))</span>
+</code></pre></div>
+<p>You can now open "03_quality_control.Rmd" to continue on the the next section.</p>
+<div class="admonition question">
+<p class="admonition-title">Check your understanding</p>
+<p>Which cell ID has the highest <strong>percent mitochondrial UMI</strong> (<code>percMitoUMI</code>) in this dataset? (Hint: try <code>which.max()</code> or <code>arrange(desc(percMitoUMI))</code> on the metadata.)</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../01_setup/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Set up">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Set up
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../03_quality_control/" class="md-footer__link md-footer__link--next" aria-label="Next: Quality Control">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Quality Control
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "content.action.edit", "navigation.footer", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="https://unpkg.com/tablesort@5.3.0/dist/tablesort.min.js"></script>
+      
+        <script src="../../javascripts/tablesort.js"></script>
+      
+    
+  </body>
+</html>
