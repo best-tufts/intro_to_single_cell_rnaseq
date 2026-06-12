@@ -188,11 +188,11 @@ scalSlot
 To prevent overwriting data or necessitating the creation of multiple `Seurat` objects, various procedures will create new assays for storing data. For example, later in this workshop we will perform a procedure, using the `SCTransform()` function (detailed later), which creates a new assay and the resulting assay structure of the `Seurat` object will have an assay structure:
 
 - RNA assay
-    - count
+    - counts
     - data
     - scale.data
 - SCT assay
-    - count
+    - counts
     - data
     - scale.data
 
