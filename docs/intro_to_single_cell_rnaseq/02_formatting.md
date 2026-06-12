@@ -138,16 +138,18 @@ ctrl
 
 ## Expression data "assays"
 
-Note that as part of the output we see the term "Active assay: RNA". In `Seurat` objects, expression data is organized into these "assays", where each assay is a container of which different states of the expression data are stored separately. Every assay contains three "slots":
+Note that as part of the output we see the term "Active assay: RNA". In `Seurat` objects, expression data is organized into these "assays", where each assay is a container of which different states of the expression data are stored separately. In Seurat v5, expression data within an assay are stored in **layers**. Common layers include `counts`, `data`, and `scale.data`. The `counts` layer stores raw counts, the `data` layer stores normalized expression values, and the `scale.data` layer stores scaled or variance-stabilized values. These layers are created at different steps of the workflow, so not every assay will contain all layers at all times.
 
 - `RNA` assay
-    - `count`
-    - `data`
-    - `scale.data`
+- `counts` layer
+- `data` layer
+- `scale.data` layer
 
-### The `count` slot
+Layers(ctrl[["RNA"]])
 
-The `count` slot always contains the expression data as counts as a sparse matrix. Below are a couple of examples for accessing these data from the Seurat object.
+### The `counts` layer
+
+The `counts` layer always contains the expression data as counts as a sparse matrix. Below are a couple of examples for accessing these data from the Seurat object.
 
 ```R
 countSlot <- GetAssayData(ctrl, assay = "RNA", layer = "counts")[1:5, 1:5]
@@ -156,19 +158,19 @@ countSlot
 
 ![](images/countDatSlot.png)
 
-### The `data` slot
+### The `data` layer
 
-The purpose of the `data` slot is to store normalized data. We will perform normalization procedures later in this workshop, and this is commonly performed using the `NormalizeData()` `Seurat` function. However, since no normalization has been performed, the `data` slot is currently identical to the `count` slot.
+The purpose of the `data` layer is to store normalized data. We will perform normalization procedures later in this workshop, and this is commonly performed using the `NormalizeData()` `Seurat` function. Since no normalization has been performed yet, the data layer may not exist at this point. Accordingly, right now this layer may be empty or may not exist yet.
 
 ```R
-GetAssayData(ctrl, assay = "RNA", layer = "counts")[1:5, 1:5]
+GetAssayData(ctrl, assay = "RNA", layer = "data")[1:5, 1:5]
 ```
 
 ![](images/countDatSlot.png)
 
-### The `scale.data` slot
+### The `scale.data` layer
 
-Numerous analytic procedures are best suited for data that has been scaled, such that the mean expression of every genes is equal to 0 with standard deviation equal to 1. This procedure is generally performed on normalized data, and the resulting "scaled" data is stored in the `scale.data` slot. Accordingly, right now this slot is an empty matrix.
+Numerous analytic procedures are best suited for data that has been scaled, such that the mean expression of every genes is equal to 0 with standard deviation equal to 1. This procedure is generally performed on normalized data, and the resulting "scaled" data is stored in the `scale.data` layer. Accordingly, right now this slot is an empty matrix.
 
 ```R
 scalSlot <- GetAssayData(
